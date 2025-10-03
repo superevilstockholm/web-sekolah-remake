@@ -1,0 +1,176 @@
+<?php
+
+namespace App\Http\Controllers\MasterData;
+
+use Exception;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+
+// Models
+use App\Models\MasterData\News;
+
+class NewsController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request): JsonResponse
+    {
+        try {
+            $news = News::with(['user:id,name'])->select(['id', 'title', 'image', 'user_id', 'category']);
+            // Search
+            $allowed = ['title', 'slug', 'content', 'author', 'category'];
+            $type = $request->query('type');
+            $query = $request->query('query');
+            if ($type && $query && in_array($type, $allowed)) {
+                if ($type === 'author') {
+                    $news->whereHas('user', fn($q) =>
+                        $q->where('name', 'like', "%$query%")
+                    );
+                } elseif ($type === 'category') {
+                    if (in_array($query, ['berita', 'acara', 'berita_acara'])) {
+                        $news->where('category', $query);
+                    } else {
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'Invalid category'
+                        ], 400);
+                    }
+                } else {
+                    $news->where($type, 'like', "%$query%");
+                }
+            }
+            // Limit
+            $limit = $request->query('limit', 10);
+            $news = $limit === 'all'
+                ? $news = $news->get()
+                : $news = $news->paginate((int) $limit);
+            $news = $news->makeHidden('user_id');
+            return response()->json([
+                'status' => true,
+                'message' => 'Successfully fetched users',
+                'data' => $news
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request): JsonResponse
+    {
+        try {
+            $validated = $request->validate([
+                'title' => 'required|string|max:255',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'content' => 'required|string',
+                'category' => 'required|string|in:berita,acara,berita_acara',
+            ]);
+            $validated['user_id'] = $request->user()->id;
+            $validated['slug'] = News::generateUniqueSlug($validated['title']);
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $filename = Str::random(40) . '.' . $extension;
+                $file->storeAs('news', $filename, 'public');
+                $validated['image'] = 'news/' . $filename;
+            }
+            News::create($validated);
+            return response()->json([
+                'status' => true,
+                'message' => 'Successfully created news'
+            ], 201);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(News $news): JsonResponse
+    {
+        try {
+            return response()->json([
+                'status' => true,
+                'message' => 'Successfully fetched news details',
+                'data' => $news
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, News $news): JsonResponse
+    {
+        try {
+            $validated = $request->validate([
+                'title' => 'sometimes|string|max:255',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'content' => 'sometimes|string',
+                'category' => 'sometimes|string|in:berita,acara,berita_acara',
+            ]);
+            if (isset($validated['title']) && $validated['title'] !== $news->title) {
+                $validated['slug'] = News::generateUniqueSlug($validated['title'], $news->id);
+            }
+            if ($request->hasFile('image')) {
+                if ($news->image) {
+                    Storage::disk('public')->delete($news->image);
+                }
+                $file = $request->file('image');
+                $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('news', $filename, 'public');
+                $validated['image'] = 'news/' . $filename;
+            }
+            $news->update($validated);
+            return response()->json([
+                'status' => true,
+                'message' => 'Successfully updated news'
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(News $news): JsonResponse
+    {
+        try {
+            if ($news->image) {
+                Storage::disk('public')->delete($news->image);
+            }
+            $news->delete();
+            return response()->json([
+                'status' => true,
+                'message' => 'Successfully deleted news'
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+}

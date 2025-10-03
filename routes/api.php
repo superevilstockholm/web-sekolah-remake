@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 // Master Data
 use App\Http\Controllers\MasterData\UserController;
 use App\Http\Controllers\MasterData\PPDBController;
+use App\Http\Controllers\MasterData\NewsController;
 
 // Auth
 Route::post('login', [AuthController::class, 'login']);
@@ -19,6 +20,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ]);
         Route::apiResource('ppdb', PPDBController::class)->parameters([
             'ppdb' => 'ppdb'
+        ]);
+        Route::apiResource('news', NewsController::class)->parameters([
+            'news' => 'news'
         ]);
     });
 });
