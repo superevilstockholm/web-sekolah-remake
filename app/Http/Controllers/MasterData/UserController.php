@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index(Request $request): JsonResponse
     {
         try {
-            $users = User::query();
+            $users = User::select(['id', 'name', 'email']);
             // Search
             $allowed = ['id', 'name', 'email'];
             $type = $request->query('type');
@@ -39,7 +39,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Successfully fetched users',
-                'data' => $users->only(['id', 'name', 'email'])
+                'data' => $users
             ], 200);
         } catch (Exception $e) {
             return response()->json([
