@@ -39,11 +39,16 @@ class AuthController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Login successfully',
-                'data' => [
-                    'token' => $token,
-                    'user' => $user->name,
-                ]
-            ], 200);
+                'user' => $user->name
+            ], 200)->withCookie(
+                'auth_token', // cookie name
+                $token, // cookie value
+                3600, // cookie expiration
+                '/', // cookie path
+                null, // cookie domain
+                false, // cookie secure
+                false // cookie httponly
+            );
         } catch (Exception $e) {
             return response()->json([
                 'status' => false,
