@@ -34,7 +34,7 @@ class UserController extends Controller
             if (strtolower($limit) === 'all') {
                 $users = $users->get();
             } else {
-                $users = $users->paginate($limit);
+                $users = $users->paginate((int) $limit);
             }
             return response()->json([
                 'status' => true,
