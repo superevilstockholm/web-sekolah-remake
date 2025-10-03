@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MasterData\UserController;
 use App\Http\Controllers\MasterData\PPDBController;
 use App\Http\Controllers\MasterData\NewsController;
+use App\Http\Controllers\MasterData\EventsController;
 
 // Auth
 Route::post('login', [AuthController::class, 'login']);
@@ -23,6 +24,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ]);
         Route::apiResource('news', NewsController::class)->parameters([
             'news' => 'news'
+        ]);
+        Route::apiResource('events', EventsController::class)->parameters([
+            'events' => 'event'
         ]);
     });
 });

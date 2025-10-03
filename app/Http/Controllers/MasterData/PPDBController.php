@@ -45,11 +45,10 @@ class PPDBController extends Controller
             }
             // Limit
             $limit = $request->query('limit', 10);
-            if (strtolower($limit) === 'all') {
-                $ppdb = $ppdb->get();
-            } else {
-                $ppdb = $ppdb->paginate((int) $limit);
-            }
+            $ppdb->orderBy('created_at', 'desc');
+            $ppdb = $limit === 'all'
+                ? $ppdb->get()
+                : $ppdb->paginate((int) $limit);
             return response()->json([
                 'status' => true,
                 'message' => 'Successfully fetched ppdb',
@@ -57,7 +56,7 @@ class PPDBController extends Controller
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $e->getMessage()
             ], 500);
         }
@@ -88,7 +87,7 @@ class PPDBController extends Controller
             ], 201);
         } catch (Exception $e) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $e->getMessage()
             ], 500);
         }
@@ -107,7 +106,7 @@ class PPDBController extends Controller
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $e->getMessage()
             ], 500);
         }
@@ -138,7 +137,7 @@ class PPDBController extends Controller
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $e->getMessage()
             ], 500);
         }
@@ -157,7 +156,7 @@ class PPDBController extends Controller
             ], 200);
         } catch (Exception $e) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $e->getMessage()
             ], 500);
         }

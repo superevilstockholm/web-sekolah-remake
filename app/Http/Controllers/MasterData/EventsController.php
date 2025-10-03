@@ -10,9 +10,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 // Models
-use App\Models\MasterData\News;
+use App\Models\MasterData\Events;
 
-class NewsController extends Controller
+class EventsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,19 +20,19 @@ class NewsController extends Controller
     public function index(Request $request): JsonResponse
     {
         try {
-            $news = News::with(['user:id,name'])->select(['id', 'title', 'image', 'user_id', 'category']);
+            $events = Events::with(['user:id,name'])->select(['id', 'title', 'image', 'user_id', 'category']);
             // Search
             $allowed = ['title', 'slug', 'content', 'author', 'category'];
             $type = $request->query('type');
             $query = $request->query('query');
             if ($type && $query && in_array($type, $allowed)) {
                 if ($type === 'author') {
-                    $news->whereHas('user', fn($q) =>
+                    $events->whereHas('user', fn($q) =>
                         $q->where('name', 'like', "%$query%")
                     );
                 } elseif ($type === 'category') {
-                    if (in_array($query, ['berita', 'acara', 'berita_acara'])) {
-                        $news->where('category', $query);
+                    if (in_array($query, ['acara', 'acara_berita'])) {
+                        $events->where('category', $query);
                     } else {
                         return response()->json([
                             'status' => false,
@@ -40,19 +40,19 @@ class NewsController extends Controller
                         ], 400);
                     }
                 } else {
-                    $news->where($type, 'like', "%$query%");
+                    $events->where($type, 'like', "%$query%");
                 }
             }
             // Limit
             $limit = $request->query('limit', 10);
-            $news->orderBy('created_at', 'desc');
-            $news = $limit === 'all'
-                ? $news->get()->makeHidden('user_id')
-                : $news->paginate((int) $limit)->through(fn($item) => $item->makeHidden('user_id'));
+            $events->orderBy('created_at', 'desc');
+            $events = $limit === 'all'
+                ? $events->get()->makeHidden('user_id')
+                : $events->paginate((int)$limit)->through(fn($item) => $item->makeHidden('user_id'));
             return response()->json([
                 'status' => true,
-                'message' => 'Successfully fetched news',
-                'data' => $news
+                'message' => 'Successfully fetched events',
+                'data' => $events
             ], 200);
         } catch (Exception $e) {
             return response()->json([
@@ -72,20 +72,20 @@ class NewsController extends Controller
                 'title' => 'required|string|max:255',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'content' => 'required|string',
-                'category' => 'required|string|in:berita,acara,berita_acara',
+                'category' => 'required|string|in:acara,acara_berita',
             ]);
             $validated['user_id'] = $request->user()->id;
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
                 $filename = Str::random(40) . '.' . $extension;
-                $file->storeAs('news', $filename, 'public');
-                $validated['image'] = 'news/' . $filename;
+                $file->storeAs('events', $filename, 'public');
+                $validated['image'] = 'events/' . $filename;
             }
-            News::create($validated);
+            Events::create($validated);
             return response()->json([
                 'status' => true,
-                'message' => 'Successfully created news'
+                'message' => 'Successfully created event'
             ], 201);
         } catch (Exception $e) {
             return response()->json([
@@ -98,14 +98,14 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(News $news): JsonResponse
+    public function show(Events $event): JsonResponse
     {
         try {
             return response()->json([
                 'status' => true,
-                'message' => 'Successfully fetched news details',
-                'data' => $news->load('user')
-            ], 200);
+                'message' => 'Successfully fetched event details',
+                'data' => $event->load('user')
+            ]);
         } catch (Exception $e) {
             return response()->json([
                 'status' => false,
@@ -117,28 +117,28 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, News $news): JsonResponse
+    public function update(Request $request, Events $event): JsonResponse
     {
         try {
             $validated = $request->validate([
                 'title' => 'sometimes|string|max:255',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'content' => 'sometimes|string',
-                'category' => 'sometimes|string|in:berita,acara,berita_acara',
+                'category' => 'sometimes|string|in:acara,acara_berita',
             ]);
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
-                if ($news->image) {
-                    Storage::disk('public')->delete($news->image);
+                if ($event->image) {
+                    Storage::disk('public')->delete($event->image);
                 }
                 $file = $request->file('image');
                 $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
-                $file->storeAs('news', $filename, 'public');
-                $validated['image'] = 'news/' . $filename;
+                $file->storeAs('events', $filename, 'public');
+                $validated['image'] = 'events/' . $filename;
             }
-            $news->update($validated);
+            $event->update($validated);
             return response()->json([
                 'status' => true,
-                'message' => 'Successfully updated news'
+                'message' => 'Successfully updated event'
             ], 200);
         } catch (Exception $e) {
             return response()->json([
@@ -151,16 +151,16 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(News $news): JsonResponse
+    public function destroy(Events $event): JsonResponse
     {
         try {
-            if ($news->image) {
-                Storage::disk('public')->delete($news->image);
+            if ($event->image) {
+                Storage::disk('public')->delete($event->image);
             }
-            $news->delete();
+            $event->delete();
             return response()->json([
                 'status' => true,
-                'message' => 'Successfully deleted news'
+                'message' => 'Successfully deleted event'
             ], 200);
         } catch (Exception $e) {
             return response()->json([
