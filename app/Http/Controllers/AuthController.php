@@ -26,14 +26,15 @@ class AuthController extends Controller
                 return response()->json([
                     'status' => false,
                     'message' => 'Email or password is incorrect'
-                ], 404);
+                ], 401);
             }
             if (!$authService->checkPassword($validated['password'], $user->password)) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Email or password is incorrect'
-                ], 404);
+                ], 401);
             }
+            $user->tokens()->delete();
             $token = $user->createToken('auth_token')->plainTextToken;
             return response()->json([
                 'status' => true,
