@@ -98,13 +98,15 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(News $news): JsonResponse
+    public function show(News $news, Request $request): JsonResponse
     {
         try {
             return response()->json([
                 'status' => true,
                 'message' => 'Successfully fetched news details',
-                'data' => $news->load('user:id,name')
+                'data' => $request->user()
+                    ? $news->load('user')
+                    : $news->load('user:id,name')
             ], 200);
         } catch (Exception $e) {
             return response()->json([

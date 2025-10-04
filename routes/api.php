@@ -19,6 +19,24 @@ use App\Http\Controllers\Settings\LogsController;
 // Auth
 Route::post('login', [AuthController::class, 'login']);
 
+// Master Data
+Route::middleware(['optional.auth'])->group(function () {
+    Route::prefix('master-data')->group(function () {
+        Route::apiResource('news', NewsController::class)->parameters([
+            'news' => 'news'
+        ])->only(['index', 'show']);
+        Route::apiResource('events', EventsController::class)->parameters([
+            'events' => 'event'
+        ])->only(['index', 'show']);
+        Route::apiResource('publications', PublicationsController::class)->parameters([
+            'publications' => 'publication'
+        ])->only(['index', 'show']);
+        Route::apiResource('blogs', BlogsController::class)->parameters([
+            'blogs' => 'blog'
+        ])->only(['index', 'show']);
+    });
+});
+
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::middleware(['logger'])->group(function () {
         Route::prefix('master-data')->group(function () {
@@ -30,16 +48,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
             ]);
             Route::apiResource('news', NewsController::class)->parameters([
                 'news' => 'news'
-            ]);
+            ])->only(['store', 'update', 'destroy']);
             Route::apiResource('events', EventsController::class)->parameters([
                 'events' => 'event'
-            ]);
+            ])->only(['store', 'update', 'destroy']);
             Route::apiResource('publications', PublicationsController::class)->parameters([
                 'publications' => 'publication'
-            ]);
+            ])->only(['store', 'update', 'destroy']);
             Route::apiResource('blogs', BlogsController::class)->parameters([
                 'blogs' => 'blog'
-            ]);
+            ])->only(['store', 'update', 'destroy']);
         });
         Route::prefix('settings')->group(function () {
             Route::apiResource('logs', LogsController::class)->parameters([

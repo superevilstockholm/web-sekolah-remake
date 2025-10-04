@@ -98,13 +98,15 @@ class EventsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Events $event): JsonResponse
+    public function show(Events $event, Request $request): JsonResponse
     {
         try {
             return response()->json([
                 'status' => true,
                 'message' => 'Successfully fetched event details',
-                'data' => $event->load('user:id,name')
+                'data' => $request->user()
+                    ? $event->load('user')
+                    : $event->load('user:id,name')
             ]);
         } catch (Exception $e) {
             return response()->json([

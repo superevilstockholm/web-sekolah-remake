@@ -98,13 +98,15 @@ class BlogsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Blogs $blog): JsonResponse
+    public function show(Blogs $blog, Request $request): JsonResponse
     {
         try {
             return response()->json([
                 'status' => true,
                 'message' => 'Successfully fetched blog details',
-                'data' => $blog->load('user:id,name')
+                'data' => $request->user()
+                    ? $blog->load('user')
+                    : $blog->load('user:id,name')
             ]);
         } catch (Exception $e) {
             return response()->json([
