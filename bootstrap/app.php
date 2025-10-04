@@ -4,7 +4,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
+// Middlewares
 use App\Http\Middleware\CookieAuthMiddleware;
+use App\Http\Middleware\LoggerMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -15,7 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'auth.sanctum.cookie' => CookieAuthMiddleware::class
+            'auth.sanctum.cookie' => CookieAuthMiddleware::class,
+            'logger' => LoggerMiddleware::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

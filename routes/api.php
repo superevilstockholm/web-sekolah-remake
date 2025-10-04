@@ -13,28 +13,38 @@ use App\Http\Controllers\MasterData\EventsController;
 use App\Http\Controllers\MasterData\PublicationsController;
 use App\Http\Controllers\MasterData\BlogsController;
 
+// Settings
+use App\Http\Controllers\Settings\LogsController;
+
 // Auth
 Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::prefix('master-data')->group(function () {
-        Route::apiResource('users', UserController::class)->parameters([
-            'users' => 'user'
-        ]);
-        Route::apiResource('ppdb', PPDBController::class)->parameters([
-            'ppdb' => 'ppdb'
-        ]);
-        Route::apiResource('news', NewsController::class)->parameters([
-            'news' => 'news'
-        ]);
-        Route::apiResource('events', EventsController::class)->parameters([
-            'events' => 'event'
-        ]);
-        Route::apiResource('publications', PublicationsController::class)->parameters([
-            'publications' => 'publication'
-        ]);
-        Route::apiResource('blogs', BlogsController::class)->parameters([
-            'blogs' => 'blog'
-        ]);
+    Route::middleware(['logger'])->group(function () {
+        Route::prefix('master-data')->group(function () {
+            Route::apiResource('users', UserController::class)->parameters([
+                'users' => 'user'
+            ]);
+            Route::apiResource('ppdb', PPDBController::class)->parameters([
+                'ppdb' => 'ppdb'
+            ]);
+            Route::apiResource('news', NewsController::class)->parameters([
+                'news' => 'news'
+            ]);
+            Route::apiResource('events', EventsController::class)->parameters([
+                'events' => 'event'
+            ]);
+            Route::apiResource('publications', PublicationsController::class)->parameters([
+                'publications' => 'publication'
+            ]);
+            Route::apiResource('blogs', BlogsController::class)->parameters([
+                'blogs' => 'blog'
+            ]);
+        });
+        Route::prefix('settings')->group(function () {
+            Route::apiResource('logs', LogsController::class)->parameters([
+                'logs' => 'log'
+            ]);
+        });
     });
 });
