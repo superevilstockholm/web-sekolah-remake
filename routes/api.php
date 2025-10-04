@@ -11,6 +11,7 @@ use App\Http\Controllers\MasterData\PPDBController;
 use App\Http\Controllers\MasterData\NewsController;
 use App\Http\Controllers\MasterData\EventsController;
 use App\Http\Controllers\MasterData\PublicationsController;
+use App\Http\Controllers\MasterData\BlogsController;
 
 // Auth
 Route::post('login', [AuthController::class, 'login']);
@@ -31,6 +32,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ]);
         Route::apiResource('publications', PublicationsController::class)->parameters([
             'publications' => 'publication'
+        ]);
+        Route::apiResource('blogs', BlogsController::class)->parameters([
+            'blogs' => 'blog'
         ]);
     });
 });

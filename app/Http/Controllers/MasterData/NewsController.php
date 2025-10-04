@@ -20,7 +20,7 @@ class NewsController extends Controller
     public function index(Request $request): JsonResponse
     {
         try {
-            $news = News::with(['user:id,name'])->select(['id', 'title', 'image', 'user_id', 'category']);
+            $news = News::with(['user:id,name'])->select(['id', 'slug', 'title', 'image', 'user_id', 'category']);
             // Search
             $allowed = ['title', 'slug', 'content', 'author', 'category'];
             $type = $request->query('type');
@@ -104,7 +104,7 @@ class NewsController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Successfully fetched news details',
-                'data' => $news->load('user')
+                'data' => $news->load('user:id,name')
             ], 200);
         } catch (Exception $e) {
             return response()->json([
@@ -126,6 +126,11 @@ class NewsController extends Controller
                 'content' => 'sometimes|string',
                 'category' => 'sometimes|string|in:berita,acara,berita_acara',
             ]);
+            if ($request->has('image') && $request->input('image') === null) {
+                if ($news->image && Storage::disk('public')->exists($news->image)) {
+                    Storage::disk('public')->delete($news->image);
+                }
+            }
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
                 if ($news->image) {
                     Storage::disk('public')->delete($news->image);
