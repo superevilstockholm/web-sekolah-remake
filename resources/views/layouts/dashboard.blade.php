@@ -75,5 +75,11 @@
     <!-- Custom JS -->
     <script src="{{ asset('static/template-assets/js/app.js') }}"></script>
     {{-- End Template Assets --}}
+    {{-- Custom Styles --}}
+    <style>
+        .pagination .page-item.active .page-link {
+            color: #fff !important;
+        }
+    </style>
 </body>
 </html>

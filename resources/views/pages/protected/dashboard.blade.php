@@ -4,73 +4,71 @@
     'Al-layyinah, Dashboard, Dashboard Al-Layyinah, Auth, Admin, Dashboard Admin, Authorization,
     Dashboard Page, Dashboard Place')
 @section('content')
-    <div class="container py-4">
-        {{-- Welcome Section --}}
-        <div class="card shadow-sm border-0 mb-4 px-4">
-            <div class="card-body d-flex align-items-center justify-content-between flex-wrap">
-                <div>
-                    <h4 class="fw-semibold mb-1">Selamat datang kembali, <span
-                            class="text-primary">{{ auth()->user()->name ?? 'Pengguna' }}</span>! 👋</h4>
-                    <p class="text-muted mb-0">
-                        Berikut adalah statistik dari Al-Layyinah
-                    </p>
-                </div>
-                <div>
-                    <img src="{{ asset('static/img/chat-icon.png') }}" alt="Dashboard" width="80" class="img-fluid">
-                </div>
+    {{-- Welcome Section --}}
+    <div class="card shadow-sm border-0 mb-4 px-4">
+        <div class="card-body d-flex align-items-center justify-content-between flex-wrap">
+            <div>
+                <h4 class="fw-semibold mb-1">Selamat datang kembali, <span
+                        class="text-primary">{{ auth()->user()->name ?? 'Pengguna' }}</span>! 👋</h4>
+                <p class="text-muted mb-0">
+                    Berikut adalah statistik dari Al-Layyinah
+                </p>
+            </div>
+            <div>
+                <img src="{{ asset('static/img/chat-icon.png') }}" alt="Dashboard" width="80" class="img-fluid">
             </div>
         </div>
-        {{-- Stats Section --}}
-        <div class="row g-3">
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm rounded-3 text-center py-4">
-                    <i class="la la-user-graduate la-2x text-success mb-2"></i>
-                    <h5 class="fw-bold mb-0" id="ppdbCount">0</h5>
-                    <small class="text-muted">Pendaftar PPDB</small>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm rounded-3 text-center py-4">
-                    <i class="la la-newspaper la-2x text-warning mb-2"></i>
-                    <h5 class="fw-bold mb-0" id="newsCount">0</h5>
-                    <small class="text-muted">Berita Aktif</small>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm rounded-3 text-center py-4">
-                    <i class="la la-calendar-check la-2x text-danger mb-2"></i>
-                    <h5 class="fw-bold mb-0" id="eventsCount">0</h5>
-                    <small class="text-muted">Event Mendatang</small>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm rounded-3 text-center py-4">
-                    <i class="la la-pen-nib la-2x text-primary mb-2"></i>
-                    <h5 class="fw-bold mb-0" id="blogsCount">0</h5>
-                    <small class="text-muted">Jumlah Blogs</small>
-                </div>
+    </div>
+    {{-- Stats Section --}}
+    <div class="row g-3">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-3 text-center py-4">
+                <i class="la la-user-graduate la-2x text-success mb-2"></i>
+                <h5 class="fw-bold mb-0" id="ppdbCount">0</h5>
+                <small class="text-muted">Pendaftar PPDB</small>
             </div>
         </div>
-        {{-- Profile Info --}}
-        <div class="card border-0 shadow-sm rounded-3 mt-4">
-            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Informasi Akun</h5>
-                <i class="la la-id-card la-lg"></i>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-3 text-center py-4">
+                <i class="la la-newspaper la-2x text-warning mb-2"></i>
+                <h5 class="fw-bold mb-0" id="newsCount">0</h5>
+                <small class="text-muted">Berita Aktif</small>
             </div>
-            <div class="card-body">
-                <div class="row mb-2">
-                    <div class="col-md-4 fw-semibold">Nama</div>
-                    <div class="col-md-8">{{ auth()->user()->name ?? 'Tidak diketahui' }}</div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-md-4 fw-semibold">Email</div>
-                    <div class="col-md-8">{{ auth()->user()->email ?? 'Tidak diketahui' }}</div>
-                </div>
-                <div class="text-end mt-3">
-                    <a href="#" class="btn btn-outline-primary btn-sm">
-                        <i class="la la-edit me-1"></i> Edit Profil
-                    </a>
-                </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-3 text-center py-4">
+                <i class="la la-calendar-check la-2x text-danger mb-2"></i>
+                <h5 class="fw-bold mb-0" id="eventsCount">0</h5>
+                <small class="text-muted">Event Mendatang</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-3 text-center py-4">
+                <i class="la la-pen-nib la-2x text-primary mb-2"></i>
+                <h5 class="fw-bold mb-0" id="blogsCount">0</h5>
+                <small class="text-muted">Jumlah Blogs</small>
+            </div>
+        </div>
+    </div>
+    {{-- Profile Info --}}
+    <div class="card border-0 shadow-sm rounded-3 mt-4">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Informasi Akun</h5>
+            <i class="la la-id-card la-lg"></i>
+        </div>
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-md-4 fw-semibold">Nama</div>
+                <div class="col-md-8">{{ auth()->user()->name ?? 'Tidak diketahui' }}</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-4 fw-semibold">Email</div>
+                <div class="col-md-8">{{ auth()->user()->email ?? 'Tidak diketahui' }}</div>
+            </div>
+            <div class="text-end mt-3">
+                <a href="#" class="btn btn-outline-primary btn-sm">
+                    <i class="la la-edit me-1"></i> Edit Profil
+                </a>
             </div>
         </div>
     </div>
