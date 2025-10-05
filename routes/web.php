@@ -16,6 +16,7 @@ Route::get('login', function () {
     ]);
 })->name('login');
 
+// Protected
 Route::middleware(['auth.sanctum.cookie'])->group(function () {
     // System
     Route::get('status', function () {
