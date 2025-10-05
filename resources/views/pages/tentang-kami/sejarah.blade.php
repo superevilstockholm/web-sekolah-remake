@@ -6,7 +6,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent px-0">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item"><a href="/tentang">Tentang</a></li>
+                <li class="breadcrumb-item"><a href="/tentang-kami">Tentang Kami</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Sejarah</li>
             </ol>
         </nav>

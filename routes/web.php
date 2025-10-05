@@ -21,6 +21,9 @@ Route::prefix('tentang-kami')->group(function () {
     Route::get('sejarah', function () {
         return view('pages.tentang-kami.sejarah');
     })->name('tentang-kami.sejarah');
+    Route::get('visi-dan-misi', function () {
+        return view('pages.tentang-kami.visi-dan-misi');
+    })->name('tentang-kami.visi-dan-misi');
 })->name('tentang-kami');
 
 // Protected

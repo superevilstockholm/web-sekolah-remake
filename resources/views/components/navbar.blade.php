@@ -62,7 +62,7 @@
                         </a>
                         <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
                             <li><a class="dropdown-item" href="{{ route('tentang-kami.sejarah') }}">Sejarah</a></li>
-                            <li><a class="dropdown-item" href="#">Visi & Misi</a></li>
+                            <li><a class="dropdown-item" href="{{ route('tentang-kami.visi-dan-misi') }}">Visi & Misi</a></li>
                             <li><a class="dropdown-item" href="#">FAQ</a></li>
                         </ul>
                     </li>
