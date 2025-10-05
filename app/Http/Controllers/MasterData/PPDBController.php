@@ -70,7 +70,7 @@ class PPDBController extends Controller
         try {
             $validated = $request->validate([
                 'jenis_pendaftaran' => 'required|string|in:Peserta Didik Baru,Mutasi',
-                'jenjang' => 'required|string|in:TK,SD,SMP,SMK',
+                'jenjang' => 'required|string|in:TK,SD,SMP,SMA',
                 'nama_lengkap' => 'required|string|max:255',
                 'jenis_kelamin' => 'required|string|in:L,P',
                 'tempat_lahir' => 'required|string|max:255',
@@ -78,7 +78,7 @@ class PPDBController extends Controller
                 'no_telp' => 'nullable|string|max:255',
                 'no_hp' => 'nullable|string|max:255',
                 'no_hp2' => 'nullable|string|max:255',
-                'email' => 'required|email|unique:ppdb',
+                'email' => 'nullable|email|unique:ppdb',
             ]);
             PPDB::create($validated);
             return response()->json([
@@ -120,15 +120,15 @@ class PPDBController extends Controller
         try {
             $validated = $request->validate([
                 'jenis_pendaftaran' => 'sometimes|string|in:Peserta Didik Baru,Mutasi',
-                'jenjang' => 'sometimes|string|in:TK,SD,SMP,SMK',
+                'jenjang' => 'sometimes|string|in:TK,SD,SMP,SMA',
                 'nama_lengkap' => 'sometimes|string|max:255',
                 'jenis_kelamin' => 'sometimes|string|in:L,P',
                 'tempat_lahir' => 'sometimes|string|max:255',
                 'tanggal_lahir' => 'sometimes|date',
-                'no_telp' => 'sometimes|string|max:255',
-                'no_hp' => 'sometimes|string|max:255',
-                'no_hp2' => 'sometimes|string|max:255',
-                'email' => 'sometimes|email|unique:ppdb,email,' . $ppdb->id,
+                'no_telp' => 'nullable|string|max:255',
+                'no_hp' => 'nullable|string|max:255',
+                'no_hp2' => 'nullable|string|max:255',
+                'email' => 'nullable|email|unique:ppdb,email,' . $ppdb->id,
             ]);
             $ppdb->update($validated);
             return response()->json([
