@@ -56,4 +56,28 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
+    public function logout(Request $request): JsonResponse
+    {
+        try {
+            $request->user()->tokens()->delete();
+            return response()->json([
+                'status' => true,
+                'message' => 'Logout successfully'
+            ])->withCookie(
+                'auth_token', // cookie name
+                '', // cookie value
+                -1, // cookie expiration
+                '/', // cookie path
+                null, // cookie domain
+                false, // cookie secure
+                false // cookie httponly
+            );
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
 }
