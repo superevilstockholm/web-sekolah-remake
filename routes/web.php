@@ -29,6 +29,25 @@ Route::prefix('tentang-kami')->group(function () {
     })->name('tentang-kami.faq');
 })->name('tentang-kami');
 
+// Pembelajaran
+Route::prefix('pembelajaran')->group(function () {
+    Route::get('jalur-pembelajaran', function () {
+        return view('pages.pembelajaran.jalur-pembelajaran');
+    })->name('pembelajaran.jalur-pembelajaran');
+    Route::get('program', function () {
+        // return view('pages.pembelajaran.program');
+    })->name('pembelajaran.program');
+    Route::get('kurikulum', function () {
+        // return view('pages.pembelajaran.kurikulum');
+    })->name('pembelajaran.kurikulum');
+    Route::get('dukungan-pembelajaran', function () {
+        // return view('pages.pembelajaran.dukungan-pembelajaran');
+    })->name('pembelajaran.dukungan-pembelajaran');
+    Route::get('pembelajaran-pelayanan', function () {
+        // return view('pages.pembelajaran.pembelajaran-pelayanan');
+    })->name('pembelajaran.pembelajaran-pelayanan');
+})->name('pembelajaran');
+
 // Protected
 Route::middleware(['auth.sanctum.cookie'])->group(function () {
     // Auth
