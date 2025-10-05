@@ -12,4 +12,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('status', function () {
         return true;
     })->name('status');
+    Route::get('logout', [AuthController::class, 'logout']);
 });
