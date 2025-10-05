@@ -24,19 +24,17 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', async function() {
-            if (token) {
-                try {
-                    const response = await axios.get('/api/is-logged-in', {
-                        headers: {
-                            'Authorization': `Bearer ${getAuthToken()}`
-                        }
-                    });
-                    if (response.status === 200 && response.data.status === true) {
-                        window.location.href = "/dashboard";
+            try {
+                const response = await axios.get('/api/status', {
+                    headers: {
+                        'Authorization': `Bearer ${getAuthToken()}`
                     }
-                } catch {
-                    localStorage.removeItem('auth_token');
+                });
+                if (response.status === 200 && response.data === 1) {
+                    window.location.href = "/dashboard";
                 }
+            } catch {
+                localStorage.removeItem('auth_token');
             }
         });
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
@@ -54,21 +52,18 @@
                         'Accept': 'application/json'
                     }
                 });
-                let data = response.data;
                 Swal.fire({
                     icon: 'success',
                     title: 'Login Success!',
-                    text: `Welcome ${data.data.user.name}`,
+                    text: `Welcome${response.data?.user ? ' ' + response.data?.user : ''}`,
                     timer: 2000,
                     showConfirmButton: false
                 });
-                localStorage.setItem("auth_token", data.data.token);
                 setTimeout(() => {
                     window.location.href = "/dashboard";
                 }, 2000);
-
             } catch (error) {
-                let msg = error.response?.data?.error || "Something went wrong";
+                let msg = error.response?.data?.error || error.response?.data?.message || "Something went wrong";
                 Swal.fire({
                     icon: 'error',
                     title: 'Login Failed',

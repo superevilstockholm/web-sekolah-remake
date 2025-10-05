@@ -12,6 +12,8 @@
 <body>
     <noscript>Please enable JavaScript to continue using this application.</noscript>
     <script>function getAuthToken() { const token = document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*\=\s*([^;]*).*$)|^.*$/, '$1'); return token ? decodeURIComponent(token) : null; }</script>
+    {{-- Sweetalert2 --}}
+    <script src="{{ asset('static/js/sweetalert2@11.js') }}"></script>
     @if ($meta['showNavbar'] ?? true)
         <x-navbar></x-navbar>
     @endif
@@ -23,8 +25,6 @@
     @endif
     {{-- Axios --}}
     <script src="{{ asset('static/js/axios.min.js') }}"></script>
-    {{-- Sweetalert2 --}}
-    <script src="{{ asset('static/js/sweetalert2@11.js') }}"></script>
     {{-- Bootstrap --}}
     <script src="{{ asset('static/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
