@@ -69,7 +69,7 @@
         </div>
     </section>
     <!-- Section 2: Identitas Inti -->
-    <section id="core-identity" class="py-5 bg-light">
+    <section id="core-identity" class="py-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
@@ -77,13 +77,13 @@
                         <img height="20" src="https://sph.edu/wp-content/uploads/2021/08/SPH-Rectangle.png"
                             alt=""> Identitas Inti Kami
                     </h5>
-                    <h2 class="title-pt-sans">
+                    <h2 class="title-pt-sans mb-0">
                         <span class="text-primary title-pt-sans">Sekolah Kristen Terdepan</span>
                         <span class="text-black">Internasional <br> di Indonesia</span>
                     </h2>
                 </div>
                 <div class="col-lg-6">
-                    <p class="p-2 mb-0 mt-5">
+                    <p class="mb-0">
                         Kami hadir untuk memberkati setiap keluarga yang memilih SPH sebagai rumah kedua mereka dengan
                         pendidikan internasional Kristen yang terpercaya. Lulusan kami dibekali dan diilhami untuk memimpin
                         dan melayani di mana pun Tuhan menempatkan mereka.
@@ -98,10 +98,10 @@
     <section id="sph-numbers" class="py-5">
         <div class="container">
             <div class="text-center mb-5">
-                <h3 class="title-pt-sans">
+                <h2 class="title-pt-sans">
                     <span class="text-primary title-pt-sans">Fakta Singkat</span>
                     <span class="text-black">Tentang SPH</span>
-                </h3>
+                </h2>
             </div>
             <!-- Baris 1 -->
             <div class="row text-center g-4 gy-5">
@@ -153,17 +153,17 @@
             </div>
         </div>
     </section>
-    <section id="our-legacy" class="py-5 bg-light">
-        <div class="container-fluid  px-4 px-lg-5  position-relative">
+    <section id="our-legacy" class="py-5">
+        <div class="container position-relative">
             <div class="row">
                 <!-- Kiri: gabungan blok teks -->
                 <div class="col-lg-6">
                     <!-- Blok pertama -->
-                    <h5 class="text-primary d-flex align-items-center gap-2" style="font-size: 0.9rem;">
+                    <h5 class="text-primary d-flex align-items-center gap-2 rounded-4" style="font-size: 0.9rem;">
                         <img height="20" src="https://sph.edu/wp-content/uploads/2021/08/SPH-Rectangle.png"
                             alt=""> Warisan Kami
                     </h5>
-                    <h2 class="fw-bold mb-4">
+                    <h2 class="mb-4">
                         <span>Mentransformasi Kehidupan melalui Pendidikan Kristen untuk</span> <br>
                         <span class="text-primary">Lebih dari 30 Tahun</span>
                     </h2>
@@ -177,9 +177,9 @@
                         berdedikasi untuk mendukung pertumbuhan iman setiap siswa dalam perjalanan iman mereka.
                     </p>
                     <!-- Spacer biar ada jarak -->
-                    <div class="my-5"></div>
+                    <div class="my-4"></div>
                     <!-- Blok kedua -->
-                    <h2 class="fw-bold mb-4">
+                    <h2 class="mb-4">
                         <span>Warisan Keunggulan dalam <br> Pendidikan Internasional</span>
                     </h2>
                     <p>
@@ -206,9 +206,9 @@
         </div>
     </section>
     <section>
-        <div class="container-fluid  px-4 px-lg-5  position-relative">
+        <div class="container position-relative">
             <div class="row">
-                <h2 class="fw-bold mb-4">
+                <h2 class="mb-4">
                     <span>Mengadopsi Inovasi Teknologi dan Perspektif Global</span>
                 </h2>
                 <p>
@@ -227,9 +227,9 @@
                     membantu membentuk individu yang sadar budaya, adaptif, dan siap memberikan kontribusi di kancah dunia.
                 </p>
             </div>
-            <div class="my-5"></div>
+            <div class="my-4"></div>
             <div class="row">
-                <h2 class="fw-bold mb-4">
+                <h2 class="mb-4">
                     <span>Komunitas yang Berkomitmen pada Pembelajaran Sepanjang Hayat</span>
                 </h2>
                 <p>
@@ -254,8 +254,10 @@
         </div>
     </section>
     <!-- Section terakhir: Full Image -->
-    <section id="full-image" class="p-0 mt-5 mb-5"> <img src="{{ asset('images/sph-2.png') }}" alt="Full Width Image"
-            class="img-fluid rounded w-100" style="display:block; object-fit:cover;">
+    <section class="p-0 my-4">
+        <div class="container">
+            <img src="{{ asset('images/sph-2.png') }}" alt="Full Width Image" class="img-fluid rounded-4 w-100">
+        </div>
     </section>
     <section>
         <div class="container">
@@ -275,11 +277,11 @@
                         src="https://sph.edu/wp-content/uploads/2023/06/home-long-img02.jpg" alt="">
                 </div>
             </div>
-            <div class="row align-items-center g-3 g-md-0 mb-4">
-                <div class="col-md-6 mb-3 mb-md-0">
+            <div class="row align-items-center g-3 g-md-4 mb-4">
+                <div class="col-md-6">
                     <img src="https://sph.edu/wp-content/uploads/2021/08/sph-home-img-04.jpg"
-                        class="img-fluid w-100 rounded px-md-2 px-lg-4"
-                        style="max-height: 500px; object-fit: cover; object-position: top;" alt="">
+                        class="img-fluid w-100 rounded-4"
+                        style="max-height: 600px; object-fit: cover; object-position: top;" alt="">
                 </div>
                 <div class="col-md-6">
                     <div
@@ -288,16 +290,16 @@
                             <img height="20" src="https://sph.edu/wp-content/uploads/2021/08/SPH-Rectangle.png"
                                 alt=""> Kurikulum Kami
                         </h5>
-                        <h3 class="d-flex align-items-center gap-2 fs-3 peta-jalan">
+                        <h3 class="d-flex flex-column flex-md-row align-items-center gap-2 fs-3 peta-jalan">
                             <span class="text-primary peta-jalan">Peta Jalan</span>
                             <span class="text-black peta-jalan">Menuju Masa Depan</span>
                         </h3>
-                        <p style="font-size: 0.9rem;">
+                        <p class="pb-0 mb-0" style="font-size: 0.9rem;">
                             Kurikulum kami merupakan peta jalan yang berguna untuk memandu dan membentuk siswa menjadi
                             seorang
                             pembelajar seumur hidup.
                         </p>
-                        <p style="font-size: 0.9rem;">
+                        <p class="pb-0 mb-0" style="font-size: 0.9rem;">
                             Program kami yang terdiri dari jenjang Pendidikan Anak Usia Dini (PAUD) atau Taman Kanak-Kanak,
                             Sekolah Dasar (SD), Sekolah Menengah Pertama (SMP), hingga Sekolah Menengah Atas (SMA) yang
                             disusun
@@ -355,7 +357,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row my-5">
+            <div class="row my-4">
                 <div class="col-12">
                     <div class="d-flex flex-column align-items-center">
                         <h2 class="text-center pt-sans text-black">Frequently Asked Question<br>Sekolah Pelita Harapan</h2>
@@ -375,7 +377,7 @@
                                 </button>
                             </h2>
                             <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body" style="font-size: 0.9rem;">
+                                <div class="accordion-body text-muted" style="font-size: 0.9rem;">
                                     <p>Sebagai salah satu grup sekolah Kristen internasional yang terkemuka di Indonesia,
                                         Sekolah Pelita Harapan memiliki misi yang berpusat pada Kristus untuk membekali
                                         anak-anak melalui pendidikan holistik agar dapat berkontribusi dalam karya penebusan
@@ -396,7 +398,7 @@
                                 </button>
                             </h2>
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body" style="font-size: 0.9rem;">
+                                <div class="accordion-body text-muted" style="font-size: 0.9rem;">
                                     <ul>
                                         <li>SPH adalah sekolah Kristen internasional Jakarta yang berfokus pada pendidikan
                                             holistik yang transformasional. Misi kami adalah untuk membawa penebusan yang
@@ -434,7 +436,7 @@
                                 </button>
                             </h2>
                             <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body" style="font-size: 0.9rem;">
+                                <div class="accordion-body text-muted" style="font-size: 0.9rem;">
                                     <p>Kami percaya bahwa kesuksesan yang didapatkan telah didemonstrasikan secara efektif
                                         melalui kehidupan ribuan alumni yang tidak hanya melanjutkan studi mereka di
                                         beberapa sekolah terbaik di dunia, tetapi juga telah mendirikan bisnis, meluncurkan
@@ -453,7 +455,7 @@
                                 </button>
                             </h2>
                             <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body" style="font-size: 0.9rem;">
+                                <div class="accordion-body text-muted" style="font-size: 0.9rem;">
                                     <p>Sekolah Pelita Harapan (SPH) adalah salah satu sistem sekolah yang beroperasi di
                                         bawah naungan Yayasan Pendidikan Pelita Harapan (YPPH), sebuah lembaga pendidikan
                                         Kristen yang didirikan pada tahun 1993. YPPH sendiri merupakan organisasi non-profit
@@ -469,7 +471,7 @@
                                 </button>
                             </h2>
                             <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body" style="font-size: 0.9rem;">
+                                <div class="accordion-body text-muted" style="font-size: 0.9rem;">
                                     <p>Kami merekrut pendidik yang memiliki nilai-nilai dan iman yang sejalan, mencintai
                                         anak-anak, terampil, serta bersemangat untuk menjadi bagian dari perjalanan
                                         pertumbuhan siswa. Guru-guru kami dipastikan bersertifikasi, terlatih, dan fasih
@@ -691,7 +693,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="${campus.image}" class="img-fluid rounded px-md-2 px-lg-4" alt="${campus.name}">
+                    <img src="${campus.image}" class="img-fluid rounded-4 px-md-2 px-lg-4" alt="${campus.name}">
                 </div>
                 </div>
             </div>
@@ -964,14 +966,14 @@
             filter: brightness(0.7);
         }
         #hero .carousel-item {
-            height: 100vh;
+            height: 650px;
             min-height: 400px;
             /* biar di HP tidak terlalu tipis */
             position: relative;
         }
         @media (max-width: 767px) {
             #hero .carousel-item {
-                height: 70vh;
+                height: 600px;
                 /* lebih pas di HP */
             }
         }
@@ -1069,7 +1071,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
         .title-auto-sans {
             font-family: 'Open Sans', sans-serif !important;
-            font-weight: 600 !important;
+            font-weight: 500 !important;
         }
     </style>
     <script>

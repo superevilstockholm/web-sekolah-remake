@@ -9,6 +9,12 @@
     <title>@yield('title', 'Al-Layyinah')</title>
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('static/bootstrap/css/bootstrap.min.css') }}">
+    {{-- Custom Styles --}}
+    <style>
+        .container {
+            max-width: 1250px;
+        }
+    </style>
 </head>
 <body>
     <noscript>Please enable JavaScript to continue using this application.</noscript>

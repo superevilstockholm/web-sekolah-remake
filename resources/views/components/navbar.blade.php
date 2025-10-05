@@ -7,7 +7,7 @@
                         aria-expanded="false">
                         Berita dan Acara
                     </a>
-                    <ul class="dropdown-menu rounded-0 border-0 shadow-sm p-3" style="font-size: 0.9rem;">
+                    <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3" style="font-size: 0.9rem;">
                         <li><a class="dropdown-item" href="#">Berita</a></li>
                         <li><a class="dropdown-item" href="#">Acara</a></li>
                         <li><a class="dropdown-item" href="#">Publikasi</a></li>
@@ -24,7 +24,7 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Bahasa
                     </a>
-                    <ul class="dropdown-menu rounded-0 border-0 shadow-sm p-3" style="font-size: 0.9rem;">
+                    <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3" style="font-size: 0.9rem;">
                         <li><a class="dropdown-item" href="#">Indonesia</a></li>
                         <li><a class="dropdown-item" href="#">English</a></li>
                     </ul>
@@ -60,7 +60,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Tentang Kami
                         </a>
-                        <ul class="dropdown-menu rounded-0 border-0 shadow-sm p-3 mt-0">
+                        <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
                             <li><a class="dropdown-item" href="#">Sejarah</a></li>
                             <li><a class="dropdown-item" href="#">Visi & Misi</a></li>
                             <li><a class="dropdown-item" href="#">FAQ</a></li>
@@ -71,7 +71,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Pembelajaran
                         </a>
-                        <ul class="dropdown-menu rounded-0 border-0 shadow-sm p-3 mt-0">
+                        <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
                             <li><a class="dropdown-item" href="#">Jalur Pembelajaran</a>
                             </li>
                             <li><a class="dropdown-item" href="#">Program</a></li>
@@ -87,7 +87,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Lembaga
                         </a>
-                        <ul class="dropdown-menu rounded-0 border-0 shadow-sm p-3 mt-0">
+                        <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
 
                             <li><a class="dropdown-item" href="#">Rauhatul Athfal</a>
                             </li>
@@ -106,7 +106,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Kehidupan Siswa
                         </a>
-                        <ul class="dropdown-menu rounded-0 border-0 shadow-sm p-3 mt-0">
+                        <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
                             <li><a class="dropdown-item" href="#">Ekstrakurikuler</a>
                             </li>
                             <li><a class="dropdown-item" href="#">Kehidupan Rohani</a>
@@ -120,7 +120,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Jenjang
                         </a>
-                        <ul class="dropdown-menu rounded-0 border-0 shadow-sm p-3 mt-0">
+                        <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
                             <li><a class="dropdown-item" href="#">TK</a></li>
                             <li><a class="dropdown-item" href="#">SD</a></li>
                             <li><a class="dropdown-item" href="#">SMP</a></li>
@@ -132,7 +132,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             PPDB
                         </a>
-                        <ul class="dropdown-menu rounded-0 border-0 shadow-sm p-3 mt-0">
+                        <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
                             <li><a class="dropdown-item" href="#">Pendaftaran</a></li>
                             <li><a class="dropdown-item" href="#">Persyaratan</a></li>
                         </ul>
@@ -145,7 +145,7 @@
                             aria-expanded="false">
                             Berita dan Acara
                         </a>
-                        <ul class="dropdown-menu rounded-0 border-0 shadow-sm p-3">
+                        <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3">
                             <li><a class="dropdown-item" href="#">Berita</a></li>
                             <li><a class="dropdown-item" href="#">Acara</a></li>
                             <li><a class="dropdown-item" href="#">Publikasi</a></li>
@@ -162,7 +162,7 @@
                             aria-expanded="false">
                             Bahasa
                         </a>
-                        <ul class="dropdown-menu rounded-0 border-0 shadow-sm p-3">
+                        <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3">
                             <li><a class="dropdown-item" href="#">Indonesia</a></li>
                             <li><a class="dropdown-item" href="#">English</a></li>
                         </ul>
