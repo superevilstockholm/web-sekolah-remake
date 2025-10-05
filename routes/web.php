@@ -17,12 +17,13 @@ Route::get('login', function () {
 })->name('login');
 
 Route::middleware(['auth.sanctum.cookie'])->group(function () {
+    // Auth
     Route::get('status', function () {
         return true;
     })->name('status');
 
     // Dashboard
     Route::get('dashboard', function () {
-        return view('pages.protected.index');
+        return view('pages.protected.dashboard');
     })->name('dashboard.index');
 });
