@@ -17,7 +17,6 @@ Route::get('login', function () {
 })->name('login');
 
 Route::middleware(['auth.sanctum.cookie'])->group(function () {
-    // System
     Route::get('status', function () {
         return true;
     })->name('status');
