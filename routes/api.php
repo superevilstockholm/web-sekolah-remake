@@ -38,6 +38,10 @@ Route::middleware(['optional.auth'])->group(function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    // Auth
+    Route::get('status', function () {
+        return true;
+    })->name('status');
     Route::middleware(['logger'])->group(function () {
         Route::prefix('master-data')->group(function () {
             Route::apiResource('users', UserController::class)->parameters([
@@ -62,7 +66,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::prefix('settings')->group(function () {
             Route::apiResource('logs', LogsController::class)->parameters([
                 'logs' => 'log'
-            ]);
+            ])->only(['index', 'show']);
         });
     });
 });
