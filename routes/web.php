@@ -38,7 +38,7 @@ Route::prefix('pembelajaran')->group(function () {
         return view('pages.pembelajaran.program');
     })->name('pembelajaran.program');
     Route::get('kurikulum', function () {
-        // return view('pages.pembelajaran.kurikulum');
+        return view('pages.pembelajaran.kurikulum');
     })->name('pembelajaran.kurikulum');
     Route::get('dukungan-pembelajaran', function () {
         // return view('pages.pembelajaran.dukungan-pembelajaran');

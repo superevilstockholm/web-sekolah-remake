@@ -75,7 +75,7 @@
                             <li><a class="dropdown-item" href="{{ route('pembelajaran.jalur-pembelajaran') }}">Jalur Pembelajaran</a>
                             </li>
                             <li><a class="dropdown-item" href="{{ route('pembelajaran.program') }}">Program</a></li>
-                            <li><a class="dropdown-item" href="#">Kurikulum</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pembelajaran.kurikulum') }}">Kurikulum</a></li>
                             <li><a class="dropdown-item" href="#">Dukungan
                                     Pembelajaran</a></li>
                             <li><a class="dropdown-item" href="#">Pembelajaran
