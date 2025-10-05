@@ -392,6 +392,13 @@
             limitSelect.addEventListener('change', () => fetchPpdbData(1));
             fetchPpdbData();
         });
+        const formatDate = (dateStr) => {
+            if (!dateStr) return '-';
+            return new Date(dateStr).toLocaleString('id-ID', {
+                dateStyle: 'long',
+                timeStyle: 'short'
+            });
+        };
         async function showPpdbDetail(id) {
             const ppdbDetailContent = document.getElementById('ppdbDetailContent');
             ppdbDetailContent.innerHTML = `<p class="text-center text-muted mb-0">Memuat data...</p>`;
@@ -411,30 +418,6 @@
                 } = response.data;
                 if (!status) throw new Error(message || 'Gagal memuat data PPDB.');
                 const ppdb = data;
-                const formatDate = (dateStr) => {
-                    if (!dateStr) return '-';
-                    // Check if dateStr is an array (which can happen with Laravel API resources for dates)
-                    if (Array.isArray(dateStr) && dateStr.length > 0) dateStr = dateStr[0];
-                    // Check if dateStr looks like a date string before parsing
-                    if (typeof dateStr === 'string' && dateStr.match(/^\d{4}-\d{2}-\d{2}/)) {
-                        return new Date(dateStr).toLocaleDateString('id-ID', {
-                            day: '2-digit',
-                            month: 'long',
-                            year: 'numeric'
-                        });
-                    }
-                    if (typeof dateStr === 'string') {
-                        // Attempt to parse as datetime
-                        const date = new Date(dateStr);
-                        if (!isNaN(date)) {
-                            return date.toLocaleString('id-ID', {
-                                dateStyle: 'long',
-                                timeStyle: 'short'
-                            });
-                        }
-                    }
-                    return dateStr; // Fallback if parsing fails or it's not a string
-                };
                 ppdbDetailContent.innerHTML = `
                     <div class="row">
                         <div class="col-md-6 mb-2">
@@ -542,20 +525,6 @@
                 });
             }
         });
-        function formatDateForInput(dateString) {
-            if (!dateString) return '';
-            // Jika formatnya DD-MM-YYYY ubah ke YYYY-MM-DD
-            const parts = dateString.split('-');
-            if (parts.length === 3) {
-                const [day, month, year] = parts;
-                // pastikan tahun 4 digit
-                if (year.length === 4) {
-                    return `${year}-${month}-${day}`;
-                }
-            }
-            // Jika sudah format YYYY-MM-DD, langsung return
-            return dateString;
-        }
 
         async function showPpdbEdit(id) {
             const modal = new bootstrap.Modal(document.getElementById('ppdbEditModal'));

@@ -35,7 +35,6 @@
                     window.location.href = "/dashboard";
                 }
             } catch {
-                localStorage.removeItem('auth_token');
             }
         });
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
@@ -60,9 +59,7 @@
                     timer: 2000,
                     showConfirmButton: false
                 });
-                setTimeout(() => {
-                    window.location.href = "/dashboard";
-                }, 2000);
+                window.location.href = "/dashboard";
             } catch (error) {
                 let msg = error.response?.data?.error || error.response?.data?.message || "Something went wrong";
                 Swal.fire({

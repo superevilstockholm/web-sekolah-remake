@@ -222,12 +222,6 @@
                     if (!res.status) throw new Error(res.message || 'Gagal mengambil data');
                     renderUsers(res.data);
                 } catch (error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal Memuat Data',
-                        text: error.response?.data?.message ||
-                            'Terjadi kesalahan saat mengambil data pengguna.',
-                    });
                     usersTable.innerHTML = `
                         <tr><td colspan="4" class="text-center text-danger">Gagal memuat data pengguna</td></tr>
                     `;
@@ -250,12 +244,6 @@
                     pagination.innerHTML = paginationHTML;
                 }
                 if (users.length === 0) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal Memuat Data',
-                        text: error.response?.data?.message ||
-                            'Terjadi kesalahan saat mengambil data pengguna.',
-                    });
                     usersTable.innerHTML = `
                         <tr><td colspan="4" class="text-center text-muted">Tidak ada data</td></tr>
                     `;
