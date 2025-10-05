@@ -16,6 +16,9 @@ use App\Http\Controllers\MasterData\BlogsController;
 // Settings
 use App\Http\Controllers\Settings\LogsController;
 
+// Other
+use App\Http\Controllers\DashboardController;
+
 // Auth
 Route::post('login', [AuthController::class, 'login']);
 
@@ -42,7 +45,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('status', function () {
         return true;
     })->name('status');
+
+    // Logger middleware
     Route::middleware(['logger'])->group(function () {
+        // Master Data
         Route::prefix('master-data')->group(function () {
             Route::apiResource('users', UserController::class)->parameters([
                 'users' => 'user'
@@ -63,10 +69,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
                 'blogs' => 'blog'
             ])->only(['store', 'update', 'destroy']);
         });
+
+        // Settings
         Route::prefix('settings')->group(function () {
             Route::apiResource('logs', LogsController::class)->parameters([
                 'logs' => 'log'
             ])->only(['index', 'show']);
         });
+    });
+
+    // Dashboard
+    Route::prefix('dashboard')->group(function () {
+        Route::get('statistics', [DashboardController::class, 'getDashboardStatistics']);
     });
 });

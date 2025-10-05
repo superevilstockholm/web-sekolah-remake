@@ -41,6 +41,7 @@ class CookieAuthMiddleware
         }
         Auth::login($accessToken->tokenable);
         $request->merge(['user' => $accessToken->tokenable]);
+        $request->setUserResolver(fn() => $accessToken->tokenable);
         return $next($request);
     }
 }

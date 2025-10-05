@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('title', 'Login - Al-Layyinah')
+@section('description', 'Al-layyinah, Login, Login Al-Layyinah, Auth, Admin, Login Admin, Authorization, Login Page, Login Place')
 @section('content')
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="card shadow p-4" style="width: 100%; max-width: 400px;">

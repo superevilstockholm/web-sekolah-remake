@@ -24,7 +24,38 @@ Route::middleware(['auth.sanctum.cookie'])->group(function () {
     })->name('status');
 
     // Dashboard
-    Route::get('dashboard', function () {
-        return view('pages.protected.dashboard');
-    })->name('dashboard.index');
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/', function () {
+            return view('pages.protected.dashboard');
+        })->name('dashboard.index');
+
+        // Master Data
+        Route::prefix('master-data')->group(function () {
+            Route::get('users', function () {
+                return view('pages.protected.master-data.users');
+            })->name('master-data.users');
+            Route::get('ppdb', function () {
+                return view('pages.protected.master-data.ppdb');
+            })->name('master-data.ppdb');
+            Route::get('news', function () {
+                return view('pages.protected.master-data.news');
+            })->name('master-data.news');
+            Route::get('events', function () {
+                return view('pages.protected.master-data.events');
+            })->name('master-data.events');
+            Route::get('blogs', function () {
+                return view('pages.protected.master-data.blogs');
+            })->name('master-data.blogs');
+            Route::get('publications', function () {
+                return view('pages.protected.master-data.publications');
+            })->name('master-data.publications');
+        })->name('master-data');
+
+        // Settings
+        Route::prefix('settings')->group(function () {
+            Route::get('logs', function () {
+                return view('pages.protected.settings.logs');
+            })->name('settings.logs');
+        })->name('settings');
+    })->name('dashboard');
 });
