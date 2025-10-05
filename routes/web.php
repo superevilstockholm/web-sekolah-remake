@@ -16,6 +16,13 @@ Route::get('login', function () {
     ]);
 })->name('login');
 
+// Tentang Kami
+Route::prefix('tentang-kami')->group(function () {
+    Route::get('sejarah', function () {
+        return view('pages.tentang-kami.sejarah');
+    })->name('tentang-kami.sejarah');
+})->name('tentang-kami');
+
 // Protected
 Route::middleware(['auth.sanctum.cookie'])->group(function () {
     // Auth

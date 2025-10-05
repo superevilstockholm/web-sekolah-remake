@@ -61,7 +61,7 @@
                             Tentang Kami
                         </a>
                         <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
-                            <li><a class="dropdown-item" href="#">Sejarah</a></li>
+                            <li><a class="dropdown-item" href="{{ route('tentang-kami.sejarah') }}">Sejarah</a></li>
                             <li><a class="dropdown-item" href="#">Visi & Misi</a></li>
                             <li><a class="dropdown-item" href="#">FAQ</a></li>
                         </ul>
@@ -88,7 +88,6 @@
                             Lembaga
                         </a>
                         <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
-
                             <li><a class="dropdown-item" href="#">Rauhatul Athfal</a>
                             </li>
                             <li><a class="dropdown-item" href="#">Madrasah
@@ -200,72 +199,58 @@
         transition: background-color 0.3s ease, box-shadow 0.3s ease;
         background-color: transparent;
     }
-
     .navbar-container.scrolled {
         background-color: #fff !important;
     }
-
     .nav-link:focus,
     .nav-link.dropdown-toggle:focus,
     .navbar-toggler:focus {
         box-shadow: none !important;
         outline: none !important;
     }
-
     .dropdown-item:hover {
         background-color: var(--bs-body-bg) !important;
         color: rgba(var(--bs-primary-rgb), 1) !important;
     }
-
     /* Efek slide-in-up yang lebih smooth */
     @keyframes slideInUp {
         from {
             opacity: 0;
             transform: translateY(12px);
         }
-
         to {
             opacity: 1;
             transform: translateY(0);
         }
     }
-
     .dropdown-menu .dropdown-item {
         opacity: 0;
         transform: translateY(12px);
     }
-
     .dropdown-menu.show .dropdown-item {
         animation: slideInUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
-
     /* Animasi berurutan (staggered delay) */
     .dropdown-menu.show .dropdown-item:nth-child(1) {
         animation-delay: 0.05s;
     }
-
     .dropdown-menu.show .dropdown-item:nth-child(2) {
         animation-delay: 0.1s;
     }
-
     .dropdown-menu.show .dropdown-item:nth-child(3) {
         animation-delay: 0.15s;
     }
-
     .dropdown-menu.show .dropdown-item:nth-child(4) {
         animation-delay: 0.2s;
     }
-
     .dropdown-menu.show .dropdown-item:nth-child(5) {
         animation-delay: 0.25s;
     }
-
     /* Navbar default */
     .navbar-container {
         transition: background-color 0.3s ease, box-shadow 0.3s ease;
         background-color: transparent;
     }
-
     .navbar-container .nav-link,
     .navbar-container .navbar-brand,
     .navbar-container .btn {
@@ -273,7 +258,6 @@
         /* Teks putih sebelum scroll */
         transition: color 0.3s ease;
     }
-
     /* Navbar saat di scroll */
     .navbar-container .nav-link,
     .navbar-container .navbar-brand,
@@ -282,18 +266,15 @@
         /* Teks putih sebelum scroll */
         transition: color 0.3s ease;
     }
-
     /* Navbar saat di scroll */
     .navbar-container.scrolled {
         background-color: #fff !important;
     }
-
     .navbar-container.scrolled nav .nav-link,
     .navbar-container.scrolled nav .navbar-brand {
         color: rgba(0, 0, 0, 0.75) !important;
         /* Teks hitam setelah scroll */
     }
-
     /* Tombol Tanya Sekarang saat scroll */
     .navbar-container.scrolled .btn-primary {
         color: #fff;
@@ -301,27 +282,22 @@
         background-color: #0d6efd;
         /* atau bisa diganti warna lain jika mau */
     }
-
     .navbar-container.scrolled header .nav-link {
         color: rgba(255, 255, 255, 0.75);
     }
-
     .navbar-container header .nav-link:hover,
     .navbar-container header .nav-link:focus,
     .navbar-container.scrolled header .nav-link:hover,
     .navbar-container.scrolled header .nav-link:focus {
         color: #fff !important;
     }
-
     .navbar-container.scrolled header {
         background-color: var(--bs-primary) !important;
     }
-
     /* Hover tombol Tanya Sekarang */
     .navbar-container .btn-primary {
         transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
     }
-
     .navbar-container .btn-primary:hover {
         background-color: transparent !important;
         color: #0d6efd !important;
