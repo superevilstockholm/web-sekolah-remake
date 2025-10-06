@@ -9,6 +9,8 @@
     <title>@yield('title', 'Al-Layyinah')</title>
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('static/bootstrap/css/bootstrap.min.css') }}">
+    {{-- Bootstrap Icons --}}
+    <link rel="stylesheet" href="{{ asset('static/bootstrap-icons/bootstrap-icons.min.css') }}">
     {{-- Custom Styles --}}
     <style>
         .container {
