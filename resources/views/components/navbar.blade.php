@@ -78,7 +78,7 @@
                             <li><a class="dropdown-item" href="{{ route('pembelajaran.kurikulum') }}">Kurikulum</a></li>
                             <li><a class="dropdown-item" href="{{ route('pembelajaran.dukungan-pembelajaran') }}">Dukungan
                                     Pembelajaran</a></li>
-                            <li><a class="dropdown-item" href="#">Pembelajaran
+                            <li><a class="dropdown-item" href="{{ route('pembelajaran.pembelajaran-pelayanan') }}">Pembelajaran
                                     Pelayanan</a></li>
                         </ul>
                     </li>

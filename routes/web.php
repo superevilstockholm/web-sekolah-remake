@@ -44,7 +44,7 @@ Route::prefix('pembelajaran')->group(function () {
         return view('pages.pembelajaran.dukungan-pembelajaran');
     })->name('pembelajaran.dukungan-pembelajaran');
     Route::get('pembelajaran-pelayanan', function () {
-        // return view('pages.pembelajaran.pembelajaran-pelayanan');
+        return view('pages.pembelajaran.pembelajaran-pelayanan');
     })->name('pembelajaran.pembelajaran-pelayanan');
 })->name('pembelajaran');
 
