@@ -18,7 +18,7 @@ class LogsController extends Controller
     public function index(Request $request): JsonResponse
     {
         try {
-            $logs = Logs::with(['user:id,name'])->select(['id', 'user_id', 'method', 'path']);
+            $logs = Logs::with(['user:id,name'])->select(['id', 'user_id', 'method', 'path'])->orderBy('id', 'desc');
             // Search
             $allowed = ['name', 'user_id', 'method', 'path'];
             $type = $request->query('type');
