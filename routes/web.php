@@ -53,6 +53,9 @@ Route::prefix('ppdb')->group(function () {
     Route::get('persyaratan', function () {
         return view('pages.ppdb.persyaratan');
     })->name('ppdb.persyaratan');
+    Route::get('pendaftaran', function () {
+        return view('pages.ppdb.pendaftaran');
+    })->name('ppdb.pendaftaran');
 })->name('ppdb');
 
 // Protected

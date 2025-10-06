@@ -37,6 +37,13 @@ Route::middleware(['optional.auth'])->group(function () {
         Route::apiResource('blogs', BlogsController::class)->parameters([
             'blogs' => 'blog'
         ])->only(['index', 'show']);
+
+        // Limitter
+        Route::middleware(['throttle:5,1'])->group(function () {
+            Route::apiResource('ppdb', PPDBController::class)->parameters([
+                'ppdb' => 'ppdb'
+            ])->only(['store']);
+        });
     });
 });
 
@@ -46,7 +53,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return true;
     })->name('status');
     Route::get('logout', [AuthController::class, 'logout']);
-    
+
     // Logger middleware
     Route::middleware(['logger'])->group(function () {
         // Master Data
@@ -56,7 +63,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             ]);
             Route::apiResource('ppdb', PPDBController::class)->parameters([
                 'ppdb' => 'ppdb'
-            ]);
+            ])->only(['index', 'show', 'update', 'destroy']);
             Route::apiResource('news', NewsController::class)->parameters([
                 'news' => 'news'
             ])->only(['store', 'update', 'destroy']);
