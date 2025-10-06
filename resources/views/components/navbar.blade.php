@@ -106,7 +106,7 @@
                             Kehidupan Siswa
                         </a>
                         <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
-                            <li><a class="dropdown-item" href="#">Ekstrakurikuler</a>
+                            <li><a class="dropdown-item" href="{{ route('kehidupan-siswa.ekstrakurikuler') }}">Ekstrakurikuler</a>
                             </li>
                             <li><a class="dropdown-item" href="#">Kehidupan Rohani</a>
                             </li>

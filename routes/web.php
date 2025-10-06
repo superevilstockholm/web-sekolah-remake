@@ -58,6 +58,13 @@ Route::prefix('ppdb')->group(function () {
     })->name('ppdb.pendaftaran');
 })->name('ppdb');
 
+// Kehidupan Siswa
+Route::prefix('kehidupan-siswa')->group(function () {
+    Route::get('ekstrakurikuler', function () {
+        return view('pages.kehidupan-siswa.ekstrakurikuler');
+    })->name('kehidupan-siswa.ekstrakurikuler');
+})->name('kehidupan-siswa');
+
 // Protected
 Route::middleware(['auth.sanctum.cookie'])->group(function () {
     // Auth
