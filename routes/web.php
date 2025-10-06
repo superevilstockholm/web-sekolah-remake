@@ -48,6 +48,13 @@ Route::prefix('pembelajaran')->group(function () {
     })->name('pembelajaran.pembelajaran-pelayanan');
 })->name('pembelajaran');
 
+// PPDB
+Route::prefix('ppdb')->group(function () {
+    Route::get('persyaratan', function () {
+        return view('pages.ppdb.persyaratan');
+    })->name('ppdb.persyaratan');
+})->name('ppdb');
+
 // Protected
 Route::middleware(['auth.sanctum.cookie'])->group(function () {
     // Auth
