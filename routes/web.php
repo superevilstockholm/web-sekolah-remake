@@ -93,6 +93,13 @@ Route::prefix('lembaga')->group(function () {
     })->name('lembaga.pondok-tahfidz');
 })->name('lembaga');
 
+// Jenjang
+Route::prefix('jenjang')->group(function () {
+    Route::get('tk', function () {
+        return view('pages.jenjang.tk');
+    })->name('jenjang.tk');
+})->name('jenjang');
+
 // Protected
 Route::middleware(['auth.sanctum.cookie'])->group(function () {
     // Auth

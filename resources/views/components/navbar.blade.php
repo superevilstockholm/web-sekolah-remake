@@ -120,7 +120,7 @@
                             Jenjang
                         </a>
                         <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
-                            <li><a class="dropdown-item" href="#">TK</a></li>
+                            <li><a class="dropdown-item" href="{{ route('jenjang.tk') }}">TK</a></li>
                             <li><a class="dropdown-item" href="#">SD</a></li>
                             <li><a class="dropdown-item" href="#">SMP</a></li>
                             <li><a class="dropdown-item" href="#">SMA</a></li>
