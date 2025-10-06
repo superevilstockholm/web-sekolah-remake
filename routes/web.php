@@ -85,9 +85,12 @@ Route::prefix('lembaga')->group(function () {
     Route::get('madrasah-tsanawiyah', function () {
         return view('pages.lembaga.madrasah-tsanawiyah');
     })->name('lembaga.madrasah-tsanawiyah');
-    Route::get('sekolah-menengah-atas-islam', function () {
-        // return view('pages.lembaga.sekolah-menengah-atas-islam');
+    Route::get('sma-islam', function () {
+        return view('pages.lembaga.sekolah-menengah-atas-islam');
     })->name('lembaga.sekolah-menengah-atas-islam');
+    Route::get('pondok-tahfidz', function () {
+        return view('pages.lembaga.pondok-tahfidz');
+    })->name('lembaga.pondok-tahfidz');
 })->name('lembaga');
 
 // Protected

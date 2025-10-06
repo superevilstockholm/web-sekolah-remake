@@ -94,9 +94,9 @@
                                     Ibtidaiyah</a></li>
                             <li><a class="dropdown-item" href="{{ route('lembaga.madrasah-tsanawiyah') }}">Madrasah
                                     Tsanawiyah</a></li>
-                            <li><a class="dropdown-item" href="#">Sekolah Menengah Atas
+                            <li><a class="dropdown-item" href="{{ route('lembaga.sekolah-menengah-atas-islam') }}">Sekolah Menengah Atas
                                     Islam</a></li>
-                            <li><a class="dropdown-item" href="#">Pondok Tahfidz Bayt
+                            <li><a class="dropdown-item" href="{{ route('lembaga.pondok-tahfidz') }}">Pondok Tahfidz Bayt
                                     Al-Qur’an</a></li>
                         </ul>
                     </li>
