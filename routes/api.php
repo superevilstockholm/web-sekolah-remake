@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Global Controllers
+use App\Http\Controllers\GlobalController;
+
 // Auth
 use App\Http\Controllers\AuthController;
 
@@ -46,7 +49,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return true;
     })->name('status');
     Route::get('logout', [AuthController::class, 'logout']);
-    
+
+    // Global uploads image for CKEditor
+    Route::post('upload-image', [GlobalController::class, 'uploadImage']);
+
     // Logger middleware
     Route::middleware(['logger'])->group(function () {
         // Master Data
