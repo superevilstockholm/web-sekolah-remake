@@ -74,6 +74,13 @@ Route::prefix('kehidupan-siswa')->group(function () {
     })->name('kehidupan-siswa.asrama-phh');
 })->name('kehidupan-siswa');
 
+// Lembaga
+Route::prefix('lembaga')->group(function () {
+    Route::get('rauhatul-athfal', function () {
+        return view('pages.lembaga.rauhatul-athfal');
+    })->name('lembaga.rauhatul-athfal');
+})->name('lembaga');
+
 // Protected
 Route::middleware(['auth.sanctum.cookie'])->group(function () {
     // Auth

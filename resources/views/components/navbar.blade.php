@@ -88,7 +88,7 @@
                             Lembaga
                         </a>
                         <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
-                            <li><a class="dropdown-item" href="#">Rauhatul Athfal</a>
+                            <li><a class="dropdown-item" href="{{ route('lembaga.rauhatul-athfal') }}">Rauhatul Athfal</a>
                             </li>
                             <li><a class="dropdown-item" href="#">Madrasah
                                     Ibtidaiyah</a></li>
