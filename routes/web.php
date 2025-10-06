@@ -109,6 +109,19 @@ Route::prefix('jenjang')->group(function () {
     })->name('jenjang.sma');
 })->name('jenjang');
 
+// Berita dan Acara
+Route::prefix('berita-dan-acara')->group(function () {
+    Route::get('berita', function () {
+        return view('pages.berita-dan-acara.berita');
+    })->name('berita-dan-acara.berita');
+    Route::get('acara', function () {
+        // return view('pages.berita-dan-acara.acara');
+    })->name('berita-dan-acara.acara');
+    Route::get('publikasi', function () {
+        // return view('pages.berita-dan-acara.publikasi');
+    })->name('berita-dan-acara.publikasi');
+})->name('berita-dan-acara');
+
 // Protected
 Route::middleware(['auth.sanctum.cookie'])->group(function () {
     // Auth

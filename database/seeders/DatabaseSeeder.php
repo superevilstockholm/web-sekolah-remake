@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Hash;
 // Models
 use App\Models\User;
 
+// Seeders
+use Database\Seeders\MasterData\NewsSeeder;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -17,10 +20,15 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => Hash::make('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'test@example.com'],
+            [
+                'name' => 'Test User',
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        // News Seeder
+        $this->call(NewsSeeder::class);
     }
 }

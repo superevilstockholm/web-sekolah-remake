@@ -4,12 +4,15 @@ namespace App\Models\MasterData;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 // Models
 use App\Models\User;
 
 class News extends Model
 {
+    use HasFactory;
+
     protected $table = 'news';
 
     protected $fillable = [
