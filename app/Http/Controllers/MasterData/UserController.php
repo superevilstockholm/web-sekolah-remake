@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index(Request $request): JsonResponse
     {
         try {
-            $users = User::select(['id', 'name', 'email']);
+            $users = User::select(['id', 'name', 'email'])->orderBy('id', 'desc');
             // Search
             $allowed = ['id', 'name', 'email'];
             $type = $request->query('type');

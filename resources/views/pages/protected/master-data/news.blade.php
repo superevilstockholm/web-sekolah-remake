@@ -247,6 +247,7 @@
                     `;
                 }
             };
+
             function renderNews(data) {
                 let news = [];
                 let paginationHTML = '';
@@ -324,7 +325,11 @@
                         'Authorization': `Bearer ${getAuthToken()}`
                     }
                 });
-                const { status, data, message } = response.data;
+                const {
+                    status,
+                    data,
+                    message
+                } = response.data;
                 if (!status) throw new Error(message || 'Gagal memuat data berita.');
                 const newsItem = data;
                 const formatDate = (dateStr) => {
@@ -339,16 +344,15 @@
                         <div class="col-12 mb-3 text-center">
                             <img src="${newsItem.image_url}"
                                 alt="${newsItem.title}"
-                                class="img-fluid rounded shadow-sm border"
-                                style="max-height: 320px; object-fit: cover;">
+                                class="w-100 h-100 object-fit-cover" style="max-height: 300px; object-position: center;">
                         </div>
-                        <div class="col-12 text-center mb-3">
-                            <h4 class="fw-bold mb-1">${newsItem.title}</h4>
+                        <div class="col-12 mb-3">
+                            <h4 class="fw-bold mb-1 fs-3">${newsItem.title}</h4>
                             <span class="badge bg-primary text-white px-3 py-2 me-1">
-                                ${newsItem.category}
+                                Category: ${newsItem.category === 'berita' ? 'Berita' : newsItem.category === 'acara' ? 'Acara' : 'Berita Acara'}
                             </span>
                             <span class="badge bg-success text-white px-3 py-2">
-                                ${newsItem.user?.name || 'Tidak diketahui'}
+                                Author: ${newsItem.user?.name || 'Tidak diketahui'}
                             </span>
                         </div>
                         <div class="col-md-6 mb-2">

@@ -35,6 +35,17 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('static/template-assets/css/style.css') }}">
     {{-- End Template Assets --}}
+    {{-- Custom Styles --}}
+    <style>
+        .show-hide-password {
+            cursor: pointer;
+            margin-right: 1px;
+            position: absolute;
+            top: 15px;
+            right: 10px;
+        }
+    </style>
+    {{-- End Custom Styles --}}
 </head>
 <body>
     <noscript>Please enable JavaScript to continue using this application.</noscript>
