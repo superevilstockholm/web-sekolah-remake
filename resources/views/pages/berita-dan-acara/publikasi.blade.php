@@ -79,71 +79,99 @@
         </div>
     </section>
     <script>
-        let currentPage = 1;
-        async function fetchPublications(page = 1) {
-            const res = await fetch(`/api/master-data/publications?limit=6&page=${page}`);
-            const json = await res.json();
-            return json.data;
-        }
-        function renderPublicationCard(pub) {
-            const col = document.createElement("div");
-            col.className = "col-md-4 col-12 mb-4";
-            col.innerHTML = `
+    let currentPage = 1;
+
+    async function fetchPublications(page = 1) {
+        const res = await fetch(`/api/master-data/publications?limit=6&page=${page}`);
+        const json = await res.json();
+        return json.data;
+    }
+
+    function renderPublicationCard(pub) {
+        const col = document.createElement("div");
+        col.className = "col-md-4 col-12 mb-4";
+        col.innerHTML = `
             <a href="${pub.file_path_url}" target="_blank" class="text-decoration-none">
                 <div class="card h-100 shadow-sm border-0 position-relative rounded overflow-hidden">
                     <div class="ratio ratio-4x3">
                         <img src="${pub.cover_url}" class="w-100 h-100 rounded"
-                            style="object-fit: cover; object-position: center;"
-                            alt="${pub.title}">
+                            style="object-fit: cover; object-position: center;" alt="${pub.title}">
                     </div>
                     <div class="card-overlay"></div>
                     <h4 class="card-title">${pub.title}</h4>
                 </div>
             </a>
         `;
-            return col;
+        return col;
+    }
+
+    async function renderPublications(page = 1) {
+        const container = document.getElementById("publication-container");
+        const pagination = document.getElementById("pagination");
+        container.innerHTML = "";
+        pagination.innerHTML = "";
+
+        const data = await fetchPublications(page);
+        data.data.forEach(pub => container.appendChild(renderPublicationCard(pub)));
+
+        const totalPages = data.last_page;
+
+        function createButton(label, page, disabled = false, active = false) {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.innerText = label;
+            btn.disabled = disabled;
+            btn.className = `btn btn-sm ${active ? "btn-primary" : "btn-outline-primary"}`;
+            btn.onclick = () => {
+                if (!disabled && typeof page === "number") {
+                    currentPage = page;
+                    renderPublications(currentPage);
+                }
+            };
+            return btn;
         }
-        async function renderPublications(page = 1) {
-            const container = document.getElementById("publication-container");
-            const pagination = document.getElementById("pagination");
-            container.innerHTML = "";
-            pagination.innerHTML = "";
-            const data = await fetchPublications(page);
-            data.data.forEach(pub => {
-                container.appendChild(renderPublicationCard(pub));
-            });
-            // Pagination
-            const totalPages = data.last_page;
-            function createButton(label, page, disabled = false, active = false) {
-                const btn = document.createElement("button");
-                btn.type = "button";
-                btn.innerText = label;
-                btn.disabled = disabled;
-                btn.className = `btn btn-sm ${active ? "btn-primary" : "btn-outline-primary"}`;
-                btn.onclick = () => {
-                    if (!disabled) {
-                        currentPage = page;
-                        renderPublications(currentPage);
-                    }
-                };
-                return btn;
+
+        // Smart Pagination Builder
+        const buildPagination = () => {
+            const pages = [];
+
+            if (totalPages <= 5) {
+                for (let i = 1; i <= totalPages; i++) pages.push(i);
+            } else if (page <= 2) {
+                pages.push(1, 2, 3, '...', totalPages);
+            } else if (page >= totalPages - 1) {
+                pages.push(1, '...', totalPages - 2, totalPages - 1, totalPages);
+            } else if (page === 3) {
+                pages.push(1, 2, 3, 4, '...', totalPages);
+            } else if (page === totalPages - 2) {
+                pages.push(1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+            } else {
+                pages.push(1, '...', page - 1, page, page + 1, '...', totalPages);
             }
-            // Prev
-            pagination.appendChild(
-                createButton("← Prev", currentPage - 1, currentPage === 1)
-            );
-            // Page numbers
-            for (let i = 1; i <= totalPages; i++) {
-                pagination.appendChild(createButton(i, i, false, i === currentPage));
+
+            return pages;
+        };
+
+        pagination.appendChild(createButton("← Prev", page - 1, page === 1));
+
+        buildPagination().forEach(p => {
+            if (p === '...') {
+                const span = document.createElement('span');
+                span.className = 'mx-1';
+                span.innerText = '...';
+                pagination.appendChild(span);
+            } else {
+                pagination.appendChild(createButton(p, p, false, p === page));
             }
-            // Next
-            pagination.appendChild(
-                createButton("Next →", currentPage + 1, currentPage === totalPages)
-            );
-        }
-        // Initial render
-        renderPublications(currentPage);
-    </script>
+        });
+
+        pagination.appendChild(createButton("Next →", page + 1, page === totalPages));
+    }
+
+    // Initial render
+    renderPublications(currentPage);
+</script>
+
     <style>
         .card-overlay {
             position: absolute;

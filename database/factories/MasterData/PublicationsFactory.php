@@ -26,8 +26,7 @@ class PublicationsFactory extends Factory
         $title = $this->faker->sentence(3);
         return [
             'title' => $title,
-            'slug' => Str::slug($title),
-            'cover' => 'publications/cover/' . $this->faker->uuid . '.jpg',
+            'cover' => null,
             'file_path' => 'publications/file/' . $this->faker->uuid . '.pdf',
         ];
     }

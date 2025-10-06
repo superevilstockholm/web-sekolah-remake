@@ -19,7 +19,7 @@ class PublicationsController extends Controller
     public function index(Request $request): JsonResponse
     {
         try {
-            $publications = Publications::select(['id', 'title', 'cover', 'file_path']);
+            $publications = Publications::select(['id', 'title', 'cover', 'file_path'])->orderBy('created_at', 'desc');;
             // Search
             $allowed = ['title'];
             $type = $request->query('type');
