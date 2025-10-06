@@ -98,6 +98,9 @@ Route::prefix('jenjang')->group(function () {
     Route::get('tk', function () {
         return view('pages.jenjang.tk');
     })->name('jenjang.tk');
+    Route::get('sd', function () {
+        return view('pages.jenjang.sd');
+    })->name('jenjang.sd');
 })->name('jenjang');
 
 // Protected
