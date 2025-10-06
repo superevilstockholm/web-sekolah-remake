@@ -63,6 +63,9 @@ Route::prefix('kehidupan-siswa')->group(function () {
     Route::get('ekstrakurikuler', function () {
         return view('pages.kehidupan-siswa.ekstrakurikuler');
     })->name('kehidupan-siswa.ekstrakurikuler');
+    Route::get('kehidupan-rohani', function () {
+        return view('pages.kehidupan-siswa.kehidupan-rohani');
+    })->name('kehidupan-siswa.kehidupan-rohani');
 })->name('kehidupan-siswa');
 
 // Protected
