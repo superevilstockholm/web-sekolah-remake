@@ -123,7 +123,7 @@
                             <li><a class="dropdown-item" href="{{ route('jenjang.tk') }}">TK</a></li>
                             <li><a class="dropdown-item" href="{{ route('jenjang.sd') }}">SD</a></li>
                             <li><a class="dropdown-item" href="{{ route('jenjang.smp') }}">SMP</a></li>
-                            <li><a class="dropdown-item" href="#">SMA</a></li>
+                            <li><a class="dropdown-item" href="{{ route('jenjang.sma') }}">SMA</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

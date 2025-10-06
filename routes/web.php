@@ -104,6 +104,9 @@ Route::prefix('jenjang')->group(function () {
     Route::get('smp', function () {
         return view('pages.jenjang.smp');
     })->name('jenjang.smp');
+    Route::get('sma', function () {
+        return view('pages.jenjang.sma');
+    })->name('jenjang.sma');
 })->name('jenjang');
 
 // Protected
