@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 // Models
 use App\Models\User;
-use App\Models\MasterData\News;
+use App\Models\MasterData\Events;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\News>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Events>
  */
-class NewsFactory extends Factory
+class EventsFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    protected $model = News::class;
+    protected $model = Events::class;
 
     public function definition(): array
     {
@@ -28,10 +28,10 @@ class NewsFactory extends Factory
         return [
             'title' => $title,
             'slug' => Str::slug($title),
-            'image' => null, // Bisa diganti faker->image('public/storage/news', 640, 480, null, false) jika mau file nyata
+            'image' => null, // Bisa diganti faker->image('public/storage/events', 640, 480, null, false) jika mau file nyata
             'content' => $this->faker->paragraphs(3, true),
             'user_id' => User::inRandomOrder()->first()?->id ?? 1,
-            'category' => $this->faker->randomElement(['berita', 'acara', 'berita_acara']),
+            'category' => $this->faker->randomElement(['acara', 'acara_berita']),
         ];
     }
 }

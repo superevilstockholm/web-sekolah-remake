@@ -10,6 +10,7 @@ use App\Models\User;
 
 // Seeders
 use Database\Seeders\MasterData\NewsSeeder;
+use Database\Seeders\MasterData\EventsSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,5 +31,8 @@ class DatabaseSeeder extends Seeder
 
         // News Seeder
         $this->call(NewsSeeder::class);
+
+        // Events Seeder
+        $this->call(EventsSeeder::class);
     }
 }
