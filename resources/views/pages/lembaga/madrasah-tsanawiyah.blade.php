@@ -14,7 +14,7 @@
                             <a href="/lembaga">Lembaga</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Madrasah Ibtidaiyah
+                            Madrasah Tsanawiyah
                         </li>
                     </ol>
                 </nav>
