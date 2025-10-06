@@ -527,11 +527,18 @@
         });
         function formatDateForInput(dateStr) {
             if (!dateStr) return '';
+            // Deteksi jika formatnya dd-mm-yyyy
+            if (dateStr.includes('-')) {
+                const parts = dateStr.split('-');
+                if (parts[0].length === 2 && parts[2].length === 4) {
+                    // format dd-mm-yyyy → yyyy-mm-dd
+                    return `${parts[2]}-${parts[1]}-${parts[0]}`;
+                }
+            }
+            // Kalau format lain (misal ISO), biarkan default
             const date = new Date(dateStr);
-            const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
+            if (isNaN(date)) return '';
+            return date.toISOString().split('T')[0];
         }
         async function showPpdbEdit(id) {
             const modal = new bootstrap.Modal(document.getElementById('ppdbEditModal'));
