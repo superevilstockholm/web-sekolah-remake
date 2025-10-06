@@ -110,7 +110,7 @@
                             </li>
                             <li><a class="dropdown-item" href="{{ route('kehidupan-siswa.kehidupan-rohani') }}">Kehidupan Rohani</a>
                             </li>
-                            <li><a class="dropdown-item" href="#">Layanan Siswa</a></li>
+                            <li><a class="dropdown-item" href="{{ route('kehidupan-siswa.layanan-siswa') }}">Layanan Siswa</a></li>
                             <li><a class="dropdown-item" href="#">Asrama PHH</a></li>
                         </ul>
                     </li>

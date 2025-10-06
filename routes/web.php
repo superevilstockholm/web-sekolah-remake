@@ -66,6 +66,12 @@ Route::prefix('kehidupan-siswa')->group(function () {
     Route::get('kehidupan-rohani', function () {
         return view('pages.kehidupan-siswa.kehidupan-rohani');
     })->name('kehidupan-siswa.kehidupan-rohani');
+    Route::get('layanan-siswa', function () {
+        return view('pages.kehidupan-siswa.layanan-siswa');
+    })->name('kehidupan-siswa.layanan-siswa');
+    Route::get('asrama-phh', function () {
+        return view('pages.kehidupan-siswa.asrama-phh');
+    })->name('kehidupan-siswa.asrama-phh');
 })->name('kehidupan-siswa');
 
 // Protected
