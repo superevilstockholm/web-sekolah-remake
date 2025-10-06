@@ -92,7 +92,7 @@
                             </li>
                             <li><a class="dropdown-item" href="{{ route('lembaga.madrasah-ibtidaiyah') }}">Madrasah
                                     Ibtidaiyah</a></li>
-                            <li><a class="dropdown-item" href="#">Madrasah
+                            <li><a class="dropdown-item" href="{{ route('lembaga.madrasah-tsanawiyah') }}">Madrasah
                                     Tsanawiyah</a></li>
                             <li><a class="dropdown-item" href="#">Sekolah Menengah Atas
                                     Islam</a></li>
