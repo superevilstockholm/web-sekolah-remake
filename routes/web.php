@@ -79,6 +79,9 @@ Route::prefix('lembaga')->group(function () {
     Route::get('rauhatul-athfal', function () {
         return view('pages.lembaga.rauhatul-athfal');
     })->name('lembaga.rauhatul-athfal');
+    Route::get('madrasah-ibtidaiyah', function () {
+        return view('pages.lembaga.madrasah-ibtidaiyah');
+    })->name('lembaga.madrasah-ibtidaiyah');
 })->name('lembaga');
 
 // Protected
