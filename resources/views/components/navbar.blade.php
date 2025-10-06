@@ -122,7 +122,7 @@
                         <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3 mt-0">
                             <li><a class="dropdown-item" href="{{ route('jenjang.tk') }}">TK</a></li>
                             <li><a class="dropdown-item" href="{{ route('jenjang.sd') }}">SD</a></li>
-                            <li><a class="dropdown-item" href="#">SMP</a></li>
+                            <li><a class="dropdown-item" href="{{ route('jenjang.smp') }}">SMP</a></li>
                             <li><a class="dropdown-item" href="#">SMA</a></li>
                         </ul>
                     </li>

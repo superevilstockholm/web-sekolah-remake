@@ -101,6 +101,9 @@ Route::prefix('jenjang')->group(function () {
     Route::get('sd', function () {
         return view('pages.jenjang.sd');
     })->name('jenjang.sd');
+    Route::get('smp', function () {
+        return view('pages.jenjang.smp');
+    })->name('jenjang.smp');
 })->name('jenjang');
 
 // Protected

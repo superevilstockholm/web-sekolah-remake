@@ -46,7 +46,7 @@
             <h2 class="fw-bold text-success">Selamat Datang di SDIT Insan Kamil</h2>
         </div>
     </div>
-    <section class="py-5">
+    <section class="py-3 py-md-5">
         <div class="container">
             <div class="row align-items-stretch">
                 {{-- Teks --}}
@@ -77,7 +77,7 @@
         </div>
     </section>
     {{-- Berita Terkini --}}
-    <section class="py-5 ">
+    <section class="py-3 py-md-5 ">
         <div class="container">
             <h3 class="fw-bold text-center mb-5 text-success">Berita Terkini</h3>
             <div class="row g-4">
@@ -124,7 +124,7 @@
         </div>
     </section>
     {{-- Lokasi / Maps --}}
-    <section class="py-5">
+    <section class="py-3 py-md-5">
         <div class="container">
             <h3 class="fw-bold text-center mb-4 text-success">Lokasi Kami</h3>
             <div class="row justify-content-center">
@@ -159,7 +159,6 @@
             color: rgba(0, 0, 0, 0.75) !important;
             /* Teks hitam setelah scroll */
         }
-
         .navbar-container nav .nav-link:hover {
             color: rgba(0, 0, 0, 1) !important;
         }
