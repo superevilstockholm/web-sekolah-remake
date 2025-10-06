@@ -118,7 +118,7 @@ Route::prefix('berita-dan-acara')->group(function () {
         return view('pages.berita-dan-acara.acara');
     })->name('berita-dan-acara.acara');
     Route::get('publikasi', function () {
-        // return view('pages.berita-dan-acara.publikasi');
+        return view('pages.berita-dan-acara.publikasi');
     })->name('berita-dan-acara.publikasi');
 })->name('berita-dan-acara');
 
