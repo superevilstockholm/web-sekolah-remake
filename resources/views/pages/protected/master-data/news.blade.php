@@ -120,12 +120,14 @@
                     <div class="modal-body">
                         <div class="row">
                             <!-- Preview Gambar dengan overlay icon -->
-                            <div class="col-12 mb-3 position-relative" style="height: 250px;" id="createImagePreviewContainer">
+                            <div class="col-12 mb-3 position-relative" style="height: 250px;"
+                                id="createImagePreviewContainer">
                                 <img id="createImagePreview" src="{{ asset('static/img/no-image-placeholder.svg') }}"
-                                    alt="Preview Image"
-                                    class="w-100 h-100 object-fit-cover" style="object-position: center; border-radius: 4px;">
+                                    alt="Preview Image" class="w-100 h-100 object-fit-cover"
+                                    style="object-position: center; border-radius: 4px;">
                                 <!-- Label sebagai tombol overlay -->
-                                <label for="createImage" class="text-primary position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center fs-3"
+                                <label for="createImage"
+                                    class="text-primary position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center fs-3"
                                     style="opacity: 0; cursor: pointer; border-radius: 50%;" id="createImageLabel">
                                     <i class="bi bi-pencil-square"></i>
                                 </label>
@@ -200,7 +202,6 @@
                     `;
                 }
             };
-
             function renderNews(data) {
                 let news = [];
                 let paginationHTML = '';
@@ -240,7 +241,7 @@
                         <td>${item.title}</td>
                         <td>${item.user.name}</td>
                         <td>${item.slug}</td>
-                        <td>${item.category}</td>
+                        <td>${item.category === 'berita' ? 'Berita' : item.category === 'acara' ? 'Acara' : 'Berita Acara'}</td>
                         <td class="d-flex align-items-center gap-1 justify-content-end">
                             <button class="btn btn-sm btn-outline-success" onclick="showNewsDetail(${item.id})">
                                 <i class="la la-eye"></i>
@@ -351,12 +352,102 @@
                 `;
             }
         }
+        let createEditor;
+        ClassicEditor
+            .create(document.querySelector('#createContent'), {
+                simpleUpload: {
+                    // URL endpoint Laravel
+                    uploadUrl: '/api/upload-image',
+                    // Tambahkan header Authorization jika perlu
+                    headers: {
+                        'Authorization': `Bearer ${getAuthToken()}`,
+                        'Accept': 'application/json'
+                    }
+                }
+            })
+            .then(editor => {
+                window.createEditor = editor;
+                // Override default upload request to include "directory" field
+                editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+                    return new MyUploadAdapter(loader);
+                };
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        class MyUploadAdapter {
+            constructor(loader) {
+                this.loader = loader;
+            }
+            upload() {
+                return this.loader.file
+                    .then(file => new Promise((resolve, reject) => {
+                        const data = new FormData();
+                        data.append('upload', file);
+                        data.append('directory', 'news'); // contoh: upload ke folder "news"
+                        fetch('/api/upload-image', {
+                                method: 'POST',
+                                headers: {
+                                    'Authorization': `Bearer ${getAuthToken()}`
+                                },
+                                body: data
+                            })
+                            .then(response => response.json())
+                            .then(res => {
+                                if (res.status) {
+                                    resolve({
+                                        default: res.url // URL gambar untuk editor
+                                    });
+                                } else {
+                                    reject(res.message || 'Upload failed');
+                                }
+                            })
+                            .catch(err => {
+                                reject(err.message || 'Upload failed');
+                            });
+                    }));
+            }
+            abort() {
+                // implementasi jika perlu cancel upload
+            }
+        }
+        const createImageInput = document.getElementById('createImage');
+        const createImagePreview = document.getElementById('createImagePreview');
+        createImageInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    createImagePreview.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                // Reset ke placeholder jika tidak ada file
+                createImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
+            }
+        });
+        // Reset modal saat ditutup
+        const newsCreateModal = document.getElementById('newsCreateModal');
+        newsCreateModal.addEventListener('hidden.bs.modal', function() {
+            createImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
+            document.getElementById('newsCreateForm').reset();
+            if (typeof createEditor !== 'undefined') createEditor.setData('');
+        });
         document.getElementById('newsCreateForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const form = e.target;
             if (typeof createEditor !== 'undefined') {
-                document.querySelector('#createContent').value = createEditor.getData();
+                const content = createEditor.getData().trim();
+                if (!content) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Konten kosong',
+                        text: 'Silakan isi konten berita!'
+                    });
+                    return;
+                }
+                document.getElementById('createContent').value = content;
             }
+            const form = e.target;
             const formData = new FormData(form);
             try {
                 const response = await axios.post(`${baseUrl}`, formData, {
@@ -427,39 +518,6 @@
                 }
             });
         }
-        let createEditor;
-        ClassicEditor
-            .create(document.querySelector('#createContent'))
-            .then(editor => {
-                createEditor = editor;
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        const createImageInput = document.getElementById('createImage');
-        const createImagePreview = document.getElementById('createImagePreview');
-
-        createImageInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    createImagePreview.src = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            } else {
-                // Reset ke placeholder jika tidak ada file
-                createImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
-            }
-        });
-
-        // Reset modal saat ditutup
-        const newsCreateModal = document.getElementById('newsCreateModal');
-        newsCreateModal.addEventListener('hidden.bs.modal', function () {
-            createImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
-            document.getElementById('newsCreateForm').reset();
-            if (typeof createEditor !== 'undefined') createEditor.setData('');
-        });
     </script>
     <style>
         /* Custom list style for markdown JS */
