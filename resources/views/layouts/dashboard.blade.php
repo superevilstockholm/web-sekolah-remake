@@ -55,6 +55,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     {{-- Sweetalert2 --}}
     <script src="{{ asset('static/js/sweetalert2@11.js') }}"></script>
+    {{-- Marked JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     {{-- Main Wrapper --}}
     <div class="main-wrapper">
         <x-topbar />

@@ -15,7 +15,7 @@
             </div>
             <div class="col-lg-2 col-md-3 col-12">
                 <div class="d-grid">
-                    <button class="btn btn-success h-100" data-bs-toggle="modal" data-bs-target="#newsCreateModal">
+                    <button class="btn btn-primary h-100" data-bs-toggle="modal" data-bs-target="#newsCreateModal">
                         Create</button>
                 </div>
             </div>
@@ -41,7 +41,7 @@
             </div>
             <div class="col-sm-12 col-md-2">
                 <div class="d-grid">
-                    <button id="searchButton" class="btn btn-success h-100">Search</button>
+                    <button id="searchButton" class="btn btn-primary h-100">Search</button>
                 </div>
             </div>
         </div>
@@ -91,22 +91,17 @@
     <div class="modal fade" id="newsShowModal" tabindex="-1" aria-labelledby="newsShowModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow">
-                <div class="modal-header bg-success text-white">
+                <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="newsShowModalLabel">
                         <i class="la la-eye me-2"></i>Detail Berita
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div id="newsDetailContent" class="p-2">
+                <div class="modal-body p-0 m-0">
+                    <div id="newsDetailContent">
                         <p class="text-center text-muted mb-0">Memuat data...</p>
                     </div>
-                </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="la la-times me-1"></i> Tutup
-                    </button>
                 </div>
             </div>
         </div>
@@ -114,7 +109,7 @@
     <div class="modal fade" id="newsCreateModal" tabindex="-1" aria-labelledby="newsCreateModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow">
-                <div class="modal-header bg-success text-white">
+                <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="newsCreateModalLabel">
                         <i class="la la-plus-circle me-2"></i>Tambah Berita
                     </h5>
@@ -151,58 +146,8 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             <i class="la la-times me-1"></i> Batal
                         </button>
-                        <button type="submit" class="btn btn-success">
-                            <i class="la la-save me-1"></i> Simpan
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="newsEditModal" tabindex="-1" aria-labelledby="newsEditModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 shadow">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="newsEditModalLabel">
-                        <i class="la la-edit me-2"></i>Edit Berita
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <form id="newsEditForm" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <input type="hidden" id="editNewsId" name="_method" value="PUT">
-                        <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label for="editTitle" class="form-label fw-semibold">Judul</label>
-                                <input type="text" class="form-control" id="editTitle" name="title" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="editCategory" class="form-label fw-semibold">Kategori</label>
-                                <select class="form-select" id="editCategory" name="category" required>
-                                    <option value="berita">Berita</option>
-                                    <option value="acara">Acara</option>
-                                    <option value="berita_acara">Berita Acara</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="editImage" class="form-label fw-semibold">Gambar (Opsional)</label>
-                                <input type="file" class="form-control" id="editImage" name="image"
-                                    accept="image/*">
-                                <small class="text-muted">Kosongkan jika tidak ingin mengubah gambar.</small>
-                            </div>
-                            <div class="col-md-12 mb-3">
-                                <label for="editContent" class="form-label fw-semibold">Konten</label>
-                                <textarea class="form-control" id="editContent" name="content" rows="5" required></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer bg-light">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            <i class="la la-times me-1"></i> Batal
-                        </button>
                         <button type="submit" class="btn btn-primary">
-                            <i class="la la-save me-1"></i> Simpan Perubahan
+                            <i class="la la-save me-1"></i> Simpan
                         </button>
                     </div>
                 </form>
@@ -341,41 +286,50 @@
                 };
                 newsDetailContent.innerHTML = `
                     <div class="row">
-                        <div class="col-12 mb-3 text-center">
+                        <div class="col-12 position-relative" style="height: 250px;">
                             <img src="${newsItem.image_url}"
                                 alt="${newsItem.title}"
-                                class="w-100 h-100 object-fit-cover" style="max-height: 300px; object-position: center;">
+                                class="w-100 h-100 object-fit-cover" style="object-position: center;">
+                                <div class="position-absolute top-0 start-0 w-100 h-100 z-3">
+                                <div class="container h-100 d-flex align-items-end justify-content-start">
+                                    <h1 class="px-3 text-primary">${newsItem.title}</h1>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12 mb-3">
-                            <h4 class="fw-bold mb-1 fs-3">${newsItem.title}</h4>
-                            <span class="badge bg-primary text-white px-3 py-2 me-1">
-                                Category: ${newsItem.category === 'berita' ? 'Berita' : newsItem.category === 'acara' ? 'Acara' : 'Berita Acara'}
-                            </span>
-                            <span class="badge bg-success text-white px-3 py-2">
-                                Author: ${newsItem.user?.name || 'Tidak diketahui'}
-                            </span>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong><i class="la la-key me-1 text-success"></i>ID:</strong>
-                            <p class="text-muted mb-0">${newsItem.id}</p>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong><i class="la la-link me-1 text-success"></i>Slug:</strong>
-                            <p class="text-muted mb-0">${newsItem.slug}</p>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong><i class="la la-calendar me-1 text-success"></i>Dibuat:</strong>
-                            <p class="text-muted mb-0">${formatDate(newsItem.created_at)}</p>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <strong><i class="la la-refresh me-1 text-success"></i>Diperbarui:</strong>
-                            <p class="text-muted mb-0">${formatDate(newsItem.updated_at)}</p>
-                        </div>
-                        <div class="col-12 mt-3">
-                            <strong><i class="la la-file-alt me-1 text-success"></i>Konten:</strong>
-                            <div class="border p-3 rounded text-muted mt-1 shadow-sm"
-                                style="max-height: 300px; overflow-y: auto; background-color: #f9fafb;">
-                                ${newsItem.content || '<em>Tidak ada konten.</em>'}
+                    </div>
+                    <div class="container">
+                        <div class="row px-1 py-3 px-md-3">
+                            <div class="col-6 mb-2">
+                                <strong><i class="la la-key me-1 text-primary"></i>Category:</strong>
+                                <p class="text-muted mb-0">${newsItem.category === 'berita' ? 'Berita' : newsItem.category === 'acara' ? 'Acara' : 'Berita Acara'}</p>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <strong><i class="la la-key me-1 text-primary"></i>Author:</strong>
+                                <p class="text-muted mb-0">${newsItem.user?.name || 'Tidak diketahui'}</p>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <strong><i class="la la-key me-1 text-primary"></i>ID:</strong>
+                                <p class="text-muted mb-0">${newsItem.id}</p>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <strong><i class="la la-link me-1 text-primary"></i>Slug:</strong>
+                                <p class="text-muted mb-0">${newsItem.slug}</p>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <strong><i class="la la-calendar me-1 text-primary"></i>Dibuat:</strong>
+                                <p class="text-muted mb-0">${formatDate(newsItem.created_at)}</p>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <strong><i class="la la-refresh me-1 text-primary"></i>Diperbarui:</strong>
+                                <p class="text-muted mb-0">${formatDate(newsItem.updated_at)}</p>
+                            </div>
+                            <div class="col-12">
+                                <strong><i class="la la-file-alt me-1 text-primary"></i>Konten:</strong>
+                                <hr>
+                                <div class="mt-1"
+                                    style="max-height: 300px; overflow-y: auto;">
+                                    ${newsItem.content ? marked.parse(newsItem.content) : '<em>Tidak ada konten.</em>'}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -422,73 +376,6 @@
                 });
             }
         });
-        async function showNewsEdit(id) {
-            const modal = new bootstrap.Modal(document.getElementById('newsEditModal'));
-            document.getElementById('newsEditForm').reset();
-            document.getElementById('editNewsId').value = id;
-            modal.show();
-            try {
-                const response = await axios.get(`${baseUrl}/${id}`, {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Authorization': `Bearer ${getAuthToken()}`
-                    }
-                });
-                const {
-                    status,
-                    data,
-                    message
-                } = response.data;
-                if (!status) throw new Error(message || 'Gagal mengambil data berita');
-                document.getElementById('editTitle').value = data.title || '';
-                document.getElementById('editCategory').value = data.category || 'berita';
-                document.getElementById('editContent').value = data.content || '';
-            } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal',
-                    text: error.response?.error || error.response?.data?.message ||
-                        'Gagal mengambil data berita'
-                });
-            }
-        }
-        document.getElementById('newsEditForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const form = e.target;
-            const id = document.getElementById('editNewsId').value;
-            const formData = new FormData(form);
-            if (formData.get('image').size === 0) {
-                formData.delete('image');
-            }
-            try {
-                const response = await axios.post(`${baseUrl}/${id}`, formData, {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Authorization': `Bearer ${getAuthToken()}`,
-                        'Content-Type': 'multipart/form-data'
-                    }
-                });
-                const res = response.data;
-                if (!res.status) throw new Error(res.message || 'Gagal memperbarui data berita');
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil',
-                    text: res.message || 'Data berita berhasil diperbarui'
-                });
-                setTimeout(() => {
-                    bootstrap.Modal.getInstance(document.getElementById('newsEditModal')).hide();
-                    fetchNews();
-                }, 1200);
-            } catch (error) {
-                console.error(error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal',
-                    text: error.response?.error || error.response?.data?.message ||
-                        'Gagal memperbarui data berita'
-                });
-            }
-        });
         async function deleteNews(id) {
             Swal.fire({
                 title: 'Hapus Berita?',
@@ -529,4 +416,11 @@
             });
         }
     </script>
+    <style>
+        /* Custom list style for markdown JS */
+        ul {
+            list-style: disc;
+            padding-left: 1.2em;
+        }
+    </style>
 @endsection
