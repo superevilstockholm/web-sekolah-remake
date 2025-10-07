@@ -242,6 +242,7 @@
                     pagination.innerHTML = '';
                 } else {
                     users = data.data;
+                    startIndex = (data.current_page - 1) * data.per_page;
                     paginationHTML = data.links.map(link => `
                         <li class="page-item ${link.active ? 'active' : ''} ${!link.url ? 'disabled' : ''}">
                             <a href="#" class="page-link" data-page="${link.page || '#'}">${link.label}</a>
@@ -257,7 +258,7 @@
                 }
                 usersTable.innerHTML = users.map((user, index) => `
                     <tr>
-                        <td>${index + 1}</td>
+                        <td>${startIndex + index + 1}</td>
                         <td>${user.name}</td>
                         <td>${user.email}</td>
                         <td class="d-flex align-items-center gap-1">
