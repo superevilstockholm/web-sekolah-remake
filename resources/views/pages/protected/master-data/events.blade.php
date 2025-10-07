@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 @section('title', 'Events - Master Data - Al-Layyinah')
-@section('description', 'Al-layyinah, Dashboard, Master Data, Master Data Al-Layyinah, Auth, Admin, Master Data Admin,
+@section('description',
+    'Al-layyinah, Dashboard, Master Data, Master Data Al-Layyinah, Auth, Admin, Master Data Admin,
     Authorization, Master Data Page, Master Data Place')
 @section('content')
     <div class="container">
@@ -105,7 +106,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="eventsCreateModal" tabindex="-1" aria-labelledby="eventsCreateModalLabel" aria-hidden="true">
+    <div class="modal fade" id="eventsCreateModal" tabindex="-1" aria-labelledby="eventsCreateModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header bg-primary text-white">
@@ -162,7 +164,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="eventsEditModal" tabindex="-1" aria-labelledby="eventsEditModalLabel" aria-hidden="true">
+    <div class="modal fade" id="eventsEditModal" tabindex="-1" aria-labelledby="eventsEditModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header bg-primary text-white">
@@ -256,7 +259,6 @@
                     `;
                 }
             };
-
             function renderEvents(data) {
                 let events = [];
                 let paginationHTML = '';
@@ -350,7 +352,7 @@
                 };
                 eventsDetailContent.innerHTML = `
                     <div class="row">
-                        <div class="col-12 position-relative" style="height: 250px;">
+                        <div class="col-12 position-relative mb-2 mb-md-3" style="height: 250px;">
                             <img src="${eventsItem.image_url}"
                                 alt="${eventsItem.title}"
                                 class="w-100 h-100 object-fit-cover" style="object-position: center;">
@@ -391,7 +393,7 @@
                                 <strong><i class="la la-file-alt me-1 text-primary"></i>Konten:</strong>
                                 <hr>
                                 <div class="mt-1"
-                                    style="max-height: 300px; overflow-y: auto;">
+                                    style="max-height: 500px; overflow-y: auto;">
                                     ${eventsItem.content ? marked.parse(eventsItem.content) : '<em>Tidak ada konten.</em>'}
                                 </div>
                             </div>
@@ -702,19 +704,15 @@
             list-style: disc;
             padding-left: 1.2em;
         }
-
         #createImageLabel {
             transition: opacity 0.3s ease;
         }
-
         #createImagePreviewContainer:hover #createImageLabel {
             opacity: 1 !important;
         }
-
         #createImagePreview {
             transition: filter 0.3s ease;
         }
-
         #createImagePreviewContainer:hover #createImagePreview {
             filter: brightness(0.8);
         }

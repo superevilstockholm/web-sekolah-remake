@@ -179,7 +179,8 @@
                     <div class="modal-body">
                         <div class="row">
                             <!-- Preview Gambar -->
-                            <div class="col-12 mb-3 position-relative" style="height: 250px;" id="editImagePreviewContainer">
+                            <div class="col-12 mb-3 position-relative" style="height: 250px;"
+                                id="editImagePreviewContainer">
                                 <img id="editImagePreview" src="{{ asset('static/img/no-image-placeholder.svg') }}"
                                     alt="Preview Image" class="w-100 h-100 object-fit-cover"
                                     style="object-position: center; border-radius: 4px;">
@@ -351,7 +352,7 @@
                 };
                 newsDetailContent.innerHTML = `
                     <div class="row">
-                        <div class="col-12 position-relative" style="height: 250px;">
+                        <div class="col-12 position-relative mb-2 mb-md-3" style="height: 250px;">
                             <img src="${newsItem.image_url}"
                                 alt="${newsItem.title}"
                                 class="w-100 h-100 object-fit-cover" style="object-position: center;">
@@ -392,7 +393,7 @@
                                 <strong><i class="la la-file-alt me-1 text-primary"></i>Konten:</strong>
                                 <hr>
                                 <div class="mt-1"
-                                    style="max-height: 300px; overflow-y: auto;">
+                                    style="max-height: 500px; overflow-y: auto;">
                                     ${newsItem.content ? marked.parse(newsItem.content) : '<em>Tidak ada konten.</em>'}
                                 </div>
                             </div>
