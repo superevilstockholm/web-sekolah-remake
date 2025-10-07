@@ -138,7 +138,7 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="createContent" class="form-label fw-semibold">Konten</label>
-                                <textarea class="form-control" id="createContent" name="content" rows="5" required></textarea>
+                                <textarea class="form-control" id="createContent" name="content" rows="5"></textarea>
                             </div>
                         </div>
                     </div>
@@ -346,6 +346,9 @@
         document.getElementById('newsCreateForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const form = e.target;
+            if (typeof createEditor !== 'undefined') {
+                document.querySelector('#createContent').value = createEditor.getData();
+            }
             const formData = new FormData(form);
             try {
                 const response = await axios.post(`${baseUrl}`, formData, {
@@ -365,6 +368,7 @@
                 setTimeout(() => {
                     bootstrap.Modal.getInstance(document.getElementById('newsCreateModal')).hide();
                     form.reset();
+                    if (typeof createEditor !== 'undefined') createEditor.setData('');
                     fetchNews();
                 }, 1200);
             } catch (error) {
@@ -415,6 +419,15 @@
                 }
             });
         }
+        let createEditor;
+        ClassicEditor
+            .create(document.querySelector('#createContent'))
+            .then(editor => {
+                createEditor = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
     <style>
         /* Custom list style for markdown JS */
