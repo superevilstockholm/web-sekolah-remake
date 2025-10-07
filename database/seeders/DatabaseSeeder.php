@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Hash;
 // Models
 use App\Models\User;
 
+// Seeders
+use Database\Seeders\MasterData\PPDBSeeder;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -22,5 +25,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => Hash::make('password'),
         ]);
+
+        // PPDB Seeder
+        $this->call(PPDBSeeder::class);
     }
 }
