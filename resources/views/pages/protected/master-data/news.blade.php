@@ -164,6 +164,62 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="newsEditModal" tabindex="-1" aria-labelledby="newsEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="newsEditModalLabel">
+                        <i class="la la-edit me-2"></i>Edit Berita
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <form id="newsEditForm" enctype="multipart/form-data">
+                    <input type="hidden" id="editId" name="id">
+                    <div class="modal-body">
+                        <div class="row">
+                            <!-- Preview Gambar -->
+                            <div class="col-12 mb-3 position-relative" style="height: 250px;" id="editImagePreviewContainer">
+                                <img id="editImagePreview" src="{{ asset('static/img/no-image-placeholder.svg') }}"
+                                    alt="Preview Image" class="w-100 h-100 object-fit-cover"
+                                    style="object-position: center; border-radius: 4px;">
+                                <label for="editImage"
+                                    class="text-primary position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center fs-3"
+                                    style="opacity: 0; cursor: pointer; border-radius: 50%;" id="editImageLabel">
+                                    <i class="bi bi-pencil-square"></i>
+                                </label>
+                                <input type="file" class="d-none" id="editImage" name="image" accept="image/*">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="editTitle" class="form-label fw-semibold">Judul</label>
+                                <input type="text" class="form-control" id="editTitle" name="title" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="editCategory" class="form-label fw-semibold">Kategori</label>
+                                <select class="form-select" id="editCategory" name="category" required>
+                                    <option value="berita">Berita</option>
+                                    <option value="acara">Acara</option>
+                                    <option value="berita_acara">Berita Acara</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="editContent" class="form-label fw-semibold">Konten</label>
+                                <textarea class="form-control" id="editContent" name="content" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="la la-times me-1"></i> Batal
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="la la-save me-1"></i> Simpan Perubahan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <script>
         const baseUrl = "{{ url('/api/master-data/news') }}";
         let fetchNews;
@@ -352,29 +408,6 @@
                 `;
             }
         }
-        let createEditor;
-        ClassicEditor
-            .create(document.querySelector('#createContent'), {
-                simpleUpload: {
-                    // URL endpoint Laravel
-                    uploadUrl: '/api/upload-image',
-                    // Tambahkan header Authorization jika perlu
-                    headers: {
-                        'Authorization': `Bearer ${getAuthToken()}`,
-                        'Accept': 'application/json'
-                    }
-                }
-            })
-            .then(editor => {
-                window.createEditor = editor;
-                // Override default upload request to include "directory" field
-                editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-                    return new MyUploadAdapter(loader);
-                };
-            })
-            .catch(error => {
-                console.error(error);
-            });
         class MyUploadAdapter {
             constructor(loader) {
                 this.loader = loader;
@@ -411,6 +444,30 @@
                 // implementasi jika perlu cancel upload
             }
         }
+        // ----------- Create -----------
+        let createEditor;
+        ClassicEditor
+            .create(document.querySelector('#createContent'), {
+                simpleUpload: {
+                    // URL endpoint Laravel
+                    uploadUrl: '/api/upload-image',
+                    // Tambahkan header Authorization jika perlu
+                    headers: {
+                        'Authorization': `Bearer ${getAuthToken()}`,
+                        'Accept': 'application/json'
+                    }
+                }
+            })
+            .then(editor => {
+                createEditor = editor;
+                // Override default upload request to include "directory" field
+                editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+                    return new MyUploadAdapter(loader);
+                };
+            })
+            .catch(error => {
+                console.error(error);
+            });
         const createImageInput = document.getElementById('createImage');
         const createImagePreview = document.getElementById('createImagePreview');
         createImageInput.addEventListener('change', function() {
@@ -425,13 +482,6 @@
                 // Reset ke placeholder jika tidak ada file
                 createImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
             }
-        });
-        // Reset modal saat ditutup
-        const newsCreateModal = document.getElementById('newsCreateModal');
-        newsCreateModal.addEventListener('hidden.bs.modal', function() {
-            createImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
-            document.getElementById('newsCreateForm').reset();
-            if (typeof createEditor !== 'undefined') createEditor.setData('');
         });
         document.getElementById('newsCreateForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -467,6 +517,7 @@
                 setTimeout(() => {
                     bootstrap.Modal.getInstance(document.getElementById('newsCreateModal')).hide();
                     form.reset();
+                    createImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
                     if (typeof createEditor !== 'undefined') createEditor.setData('');
                     fetchNews();
                 }, 1200);
@@ -478,6 +529,133 @@
                     text: error.response?.data?.message || 'Terjadi kesalahan saat membuat berita.'
                 });
             }
+        });
+        // Reset modal saat ditutup
+        const newsCreateModal = document.getElementById('newsCreateModal');
+        newsCreateModal.addEventListener('hidden.bs.modal', function() {
+            createImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
+            document.getElementById('newsCreateForm').reset();
+            if (typeof createEditor !== 'undefined') createEditor.setData('');
+        });
+        // ----------- Edit -----------
+        let editEditor;
+        // Init CKEditor untuk edit
+        let editEditorPromise = ClassicEditor
+            .create(document.querySelector('#editContent'), {
+                simpleUpload: {
+                    uploadUrl: '/api/upload-image',
+                    headers: {
+                        'Authorization': `Bearer ${getAuthToken()}`,
+                        'Accept': 'application/json'
+                    }
+                }
+            })
+            .then(editor => {
+                editEditor = editor;
+                editor.plugins.get('FileRepository').createUploadAdapter = (loader) => new MyUploadAdapter(loader);
+                return editor;
+            })
+            .catch(error => console.error(error));
+        // Preview gambar
+        const editImageInput = document.getElementById('editImage');
+        const editImagePreview = document.getElementById('editImagePreview');
+        editImageInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    editImagePreview.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                editImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
+            }
+        });
+        // Show edit modal & fetch data
+        async function showNewsEdit(id) {
+            try {
+                const response = await axios.get(`${baseUrl}/${id}`, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${getAuthToken()}`
+                    }
+                });
+                const res = response.data;
+                if (!res.status) throw new Error(res.message || 'Gagal memuat data berita');
+                const news = res.data;
+                document.getElementById('editId').value = news.id;
+                document.getElementById('editTitle').value = news.title;
+                document.getElementById('editCategory').value = news.category;
+                editImagePreview.src = news.image_url || "{{ asset('static/img/no-image-placeholder.svg') }}";
+                // Tunggu editor siap sebelum setData
+                const editor = await editEditorPromise;
+                editor.setData(news.content || '');
+                const modal = new bootstrap.Modal(document.getElementById('newsEditModal'));
+                modal.show();
+            } catch (error) {
+                console.error(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal',
+                    text: error.response?.data?.message || 'Tidak dapat memuat data berita.'
+                });
+            }
+        }
+        // Submit edit form
+        document.getElementById('newsEditForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            if (typeof editEditor !== 'undefined') {
+                const content = editEditor.getData().trim();
+                if (!content) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Konten kosong',
+                        text: 'Silakan isi konten berita!'
+                    });
+                    return;
+                }
+                document.getElementById('editContent').value = content;
+            }
+            const form = e.target;
+            const formData = new FormData(form);
+            formData.append('_method', 'PUT');
+            const id = document.getElementById('editId').value;
+            try {
+                const response = await axios.post(`${baseUrl}/${id}`, formData, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${getAuthToken()}`,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                const res = response.data;
+                if (!res.status) throw new Error(res.message || 'Gagal memperbarui berita');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: res.message || 'Berita berhasil diperbarui'
+                });
+                setTimeout(() => {
+                    bootstrap.Modal.getInstance(document.getElementById('newsEditModal')).hide();
+                    form.reset();
+                    editImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
+                    if (typeof editEditor !== 'undefined') editEditor.setData('');
+                    fetchNews();
+                }, 1200);
+            } catch (error) {
+                console.error(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal',
+                    text: error.response?.data?.message || 'Terjadi kesalahan saat memperbarui berita.'
+                });
+            }
+        });
+        // Reset modal saat ditutup
+        document.getElementById('newsEditModal').addEventListener('hidden.bs.modal', function() {
+            editImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
+            document.getElementById('newsEditForm').reset();
+            if (typeof editEditor !== 'undefined') editEditor.setData('');
         });
         async function deleteNews(id) {
             Swal.fire({
