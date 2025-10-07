@@ -119,22 +119,30 @@
                 <form id="newsCreateForm" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-12 mb-3">
+                            <!-- Preview Gambar dengan overlay icon -->
+                            <div class="col-12 mb-3 position-relative" style="height: 250px;" id="createImagePreviewContainer">
+                                <img id="createImagePreview" src="{{ asset('static/img/no-image-placeholder.svg') }}"
+                                    alt="Preview Image"
+                                    class="w-100 h-100 object-fit-cover" style="object-position: center; border-radius: 4px;">
+                                <!-- Label sebagai tombol overlay -->
+                                <label for="createImage" class="text-primary position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center fs-3"
+                                    style="opacity: 0; cursor: pointer; border-radius: 50%;" id="createImageLabel">
+                                    <i class="bi bi-pencil-square"></i>
+                                </label>
+                                <!-- Input file hidden -->
+                                <input type="file" class="d-none" id="createImage" name="image" accept="image/*">
+                            </div>
+                            <div class="col-12 mb-3">
                                 <label for="createTitle" class="form-label fw-semibold">Judul</label>
                                 <input type="text" class="form-control" id="createTitle" name="title" required>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-12 mb-3">
                                 <label for="createCategory" class="form-label fw-semibold">Kategori</label>
                                 <select class="form-select" id="createCategory" name="category" required>
                                     <option value="berita">Berita</option>
                                     <option value="acara">Acara</option>
                                     <option value="berita_acara">Berita Acara</option>
                                 </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="createImage" class="form-label fw-semibold">Gambar</label>
-                                <input type="file" class="form-control" id="createImage" name="image"
-                                    accept="image/*">
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="createContent" class="form-label fw-semibold">Konten</label>
@@ -428,12 +436,48 @@
             .catch(error => {
                 console.error(error);
             });
+        const createImageInput = document.getElementById('createImage');
+        const createImagePreview = document.getElementById('createImagePreview');
+
+        createImageInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    createImagePreview.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                // Reset ke placeholder jika tidak ada file
+                createImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
+            }
+        });
+
+        // Reset modal saat ditutup
+        const newsCreateModal = document.getElementById('newsCreateModal');
+        newsCreateModal.addEventListener('hidden.bs.modal', function () {
+            createImagePreview.src = "{{ asset('static/img/no-image-placeholder.svg') }}";
+            document.getElementById('newsCreateForm').reset();
+            if (typeof createEditor !== 'undefined') createEditor.setData('');
+        });
     </script>
     <style>
         /* Custom list style for markdown JS */
         ul {
             list-style: disc;
             padding-left: 1.2em;
+        }
+        #createImageLabel {
+            transition: opacity 0.3s ease;
+        }
+        #createImagePreviewContainer:hover #createImageLabel {
+            opacity: 1 !important;
+        }
+        #createImagePreview {
+            transition: filter 0.3s ease;
+        }
+        #createImagePreviewContainer:hover #createImagePreview {
+            filter: brightness(0.8);
         }
     </style>
 @endsection
