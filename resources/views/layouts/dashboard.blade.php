@@ -59,6 +59,8 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     {{-- Marked JS --}}
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    {{-- Components --}}
+    <x-loading-overlay></x-loading-overlay>
     {{-- Main Wrapper --}}
     <div class="main-wrapper">
         <x-topbar />

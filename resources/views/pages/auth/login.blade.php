@@ -2,6 +2,9 @@
 @section('title', 'Login - Al-Layyinah')
 @section('description', 'Al-layyinah, Login, Login Al-Layyinah, Auth, Admin, Login Admin, Authorization, Login Page, Login Place')
 @section('content')
+    <script>
+        showLoading();
+    </script>
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
             <h3 class="text-center mb-4">Login</h3>
@@ -34,7 +37,10 @@
                 if (response.status === 200 && response.data === 1) {
                     window.location.href = "/dashboard";
                 }
-            } catch {
+            } catch {} finally {
+                setTimeout(() => {
+                    hideLoading();
+                }, 1000);
             }
         });
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
