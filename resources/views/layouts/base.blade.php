@@ -14,6 +14,8 @@
     <script>function getAuthToken() { const token = document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*\=\s*([^;]*).*$)|^.*$/, '$1'); return token ? decodeURIComponent(token) : null; }</script>
     {{-- Sweetalert2 --}}
     <script src="{{ asset('static/js/sweetalert2@11.js') }}"></script>
+    {{-- Components --}}
+    <x-loading-overlay></x-loading-overlay>
     @if ($meta['showNavbar'] ?? true)
         <x-navbar></x-navbar>
     @endif
