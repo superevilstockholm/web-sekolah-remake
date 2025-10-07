@@ -15,7 +15,7 @@
             </div>
             <div class="col-lg-2 col-md-3 col-12">
                 <div class="d-grid">
-                    <button class="btn btn-success h-100" data-bs-toggle="modal" data-bs-target="#ppdbCreateModal">
+                    <button class="btn btn-primary h-100" data-bs-toggle="modal" data-bs-target="#ppdbCreateModal">
                         Create</button>
                 </div>
             </div>
@@ -45,7 +45,7 @@
             </div>
             <div class="col-sm-12 col-md-2">
                 <div class="d-grid">
-                    <button id="searchButton" class="btn btn-success h-100">Search</button>
+                    <button id="searchButton" class="btn btn-primary h-100">Search</button>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
     <div class="modal fade" id="ppdbShowModal" tabindex="-1" aria-labelledby="ppdbShowModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow">
-                <div class="modal-header bg-success text-white">
+                <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="ppdbShowModalLabel">
                         <i class="la la-user me-2"></i>Detail Data PPDB
                     </h5>
@@ -117,7 +117,7 @@
     <div class="modal fade" id="ppdbCreateModal" tabindex="-1" aria-labelledby="ppdbCreateModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow">
-                <div class="modal-header bg-success text-white">
+                <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="ppdbCreateModalLabel">
                         <i class="la la-plus-circle me-2"></i>Tambah Data PPDB
                     </h5>
@@ -128,78 +128,59 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <div class="form-group form-focus">
-                                    <input type="text" class="form-control floating" id="createNama" required>
-                                    <label class="focus-label">Nama Lengkap</label>
-                                </div>
+                                <label for="createNama" class="form-label fw-semibold">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="createNama" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <div class="form-group form-focus">
-                                    <input type="email" class="form-control floating" id="createEmail" required>
-                                    <label class="focus-label">Email</label>
-                                </div>
+                                <label for="createEmail" class="form-label fw-semibold">Email</label>
+                                <input type="email" class="form-control" id="createEmail" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <div class="form-group form-focus select-focus">
-                                    <select id="createJenisPendaftaran" class="select floating" required>
-                                        <option value="">Pilih Jenis Pendaftaran</option>
-                                        <option value="Peserta Didik Baru">Peserta Didik Baru</option>
-                                        <option value="Mutasi">Mutasi</option>
-                                    </select>
-                                    <label class="focus-label">Jenis Pendaftaran</label>
-                                </div>
+                                <label for="createJenisPendaftaran" class="form-label fw-semibold">Jenis
+                                    Pendaftaran</label>
+                                <select id="createJenisPendaftaran" class="form-select" required>
+                                    <option value="">Pilih Jenis Pendaftaran</option>
+                                    <option value="Peserta Didik Baru">Peserta Didik Baru</option>
+                                    <option value="Mutasi">Mutasi</option>
+                                </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <div class="form-group form-focus select-focus">
-                                    <select id="createJenjang" class="select floating" required>
-                                        <option value="">Pilih Jenjang</option>
-                                        <option value="TK">TK</option>
-                                        <option value="SD">SD</option>
-                                        <option value="SMP">SMP</option>
-                                        <option value="SMA">SMA</option>
-                                    </select>
-                                    <label class="focus-label">Jenjang</label>
-                                </div>
+                                <label for="createJenjang" class="form-label fw-semibold">Jenjang</label>
+                                <select id="createJenjang" class="form-select" required>
+                                    <option value="">Pilih Jenjang</option>
+                                    <option value="TK">TK</option>
+                                    <option value="SD">SD</option>
+                                    <option value="SMP">SMP</option>
+                                    <option value="SMA">SMA</option>
+                                </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <div class="form-group form-focus select-focus">
-                                    <select id="createJenisKelamin" class="select floating" required>
-                                        <option value="">Pilih Jenis Kelamin</option>
-                                        <option value="L">Laki-laki</option>
-                                        <option value="P">Perempuan</option>
-                                    </select>
-                                    <label class="focus-label">Jenis Kelamin</label>
-                                </div>
+                                <label for="createJenisKelamin" class="form-label fw-semibold">Jenis Kelamin</label>
+                                <select id="createJenisKelamin" class="form-select" required>
+                                    <option value="">Pilih Jenis Kelamin</option>
+                                    <option value="L">Laki-laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <div class="form-group form-focus">
-                                    <input type="text" class="form-control floating" id="createTempatLahir">
-                                    <label class="focus-label">Tempat Lahir</label>
-                                </div>
+                                <label for="createTempatLahir" class="form-label fw-semibold">Tempat Lahir</label>
+                                <input type="text" class="form-control" id="createTempatLahir" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <div class="form-group form-focus">
-                                    <input type="date" class="form-control floating" id="createTanggalLahir">
-                                    <label class="focus-label">Tanggal Lahir</label>
-                                </div>
+                                <label for="createTanggalLahir" class="form-label fw-semibold">Tanggal Lahir</label>
+                                <input type="date" class="form-control" id="createTanggalLahir" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <div class="form-group form-focus">
-                                    <input type="text" class="form-control floating" id="createNoTelp">
-                                    <label class="focus-label">No Telepon</label>
-                                </div>
+                                <label for="createNoTelp" class="form-label fw-semibold">No Telepon</label>
+                                <input type="text" class="form-control" id="createNoTelp">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <div class="form-group form-focus">
-                                    <input type="text" class="form-control floating" id="createNoHp">
-                                    <label class="focus-label">No HP 1</label>
-                                </div>
+                                <label for="createNoHp" class="form-label fw-semibold">No HP 1</label>
+                                <input type="text" class="form-control" id="createNoHp" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <div class="form-group form-focus">
-                                    <input type="text" class="form-control floating" id="createNoHp2">
-                                    <label class="focus-label">No HP 2</label>
-                                </div>
+                                <label for="createNoHp2" class="form-label fw-semibold">No HP 2</label>
+                                <input type="text" class="form-control" id="createNoHp2">
                             </div>
                         </div>
                     </div>
@@ -207,7 +188,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             <i class="la la-times me-1"></i> Batal
                         </button>
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-primary">
                             <i class="la la-save me-1"></i> Simpan
                         </button>
                     </div>

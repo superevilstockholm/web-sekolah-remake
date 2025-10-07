@@ -35,6 +35,17 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('static/template-assets/css/style.css') }}">
     {{-- End Template Assets --}}
+    {{-- Custom Styles --}}
+    <style>
+        .show-hide-password {
+            cursor: pointer;
+            margin-right: 1px;
+            position: absolute;
+            top: 15px;
+            right: 10px;
+        }
+    </style>
+    {{-- End Custom Styles --}}
 </head>
 <body>
     <noscript>Please enable JavaScript to continue using this application.</noscript>
@@ -44,6 +55,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     {{-- Sweetalert2 --}}
     <script src="{{ asset('static/js/sweetalert2@11.js') }}"></script>
+    <!-- CKEditor 5 Classic -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    {{-- Marked JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     {{-- Main Wrapper --}}
     <div class="main-wrapper">
         <x-topbar />

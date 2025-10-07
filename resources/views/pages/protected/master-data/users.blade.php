@@ -15,7 +15,7 @@
             </div>
             <div class="col-lg-2 col-md-3 col-12">
                 <div class="d-grid">
-                    <button class="btn btn-success h-100" data-bs-toggle="modal" data-bs-target="#userCreateModal">
+                    <button class="btn btn-primary h-100" data-bs-toggle="modal" data-bs-target="#userCreateModal">
                         Create</button>
                 </div>
             </div>
@@ -39,7 +39,7 @@
             </div>
             <div class="col-sm-12 col-md-2">
                 <div class="d-grid">
-                    <button id="searchButton" class="btn btn-success h-100">Search</button>
+                    <button id="searchButton" class="btn btn-primary h-100">Search</button>
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
     <div class="modal fade" id="userShowModal" tabindex="-1" aria-labelledby="userShowModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow">
-                <div class="modal-header bg-success text-white">
+                <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="userShowModalLabel">
                         <i class="la la-user me-2"></i>Detail Pengguna
                     </h5>
@@ -111,7 +111,7 @@
     <div class="modal fade" id="userCreateModal" tabindex="-1" aria-labelledby="userCreateModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow">
-                <div class="modal-header bg-success text-white">
+                <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="userCreateModalLabel">
                         <i class="la la-plus-circle me-2"></i>Tambah Pengguna
                     </h5>
@@ -131,7 +131,10 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="createPassword" class="form-label fw-semibold">Password</label>
-                                <input type="password" class="form-control" id="createPassword" required>
+                                <div class="position-relative">
+                                    <input type="password" class="form-control" id="createPassword" required>
+                                    <span class="fa fa-eye-slash show-hide-password" id="toggle-password-create"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -139,7 +142,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             <i class="la la-times me-1"></i> Batal
                         </button>
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-primary">
                             <i class="la la-save me-1"></i> Simpan
                         </button>
                     </div>
@@ -172,8 +175,11 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="editPassword" class="form-label fw-semibold">Password (Opsional)</label>
-                                <input type="password" class="form-control" id="editPassword"
-                                    placeholder="Kosongkan jika tidak diubah">
+                                <div class="position-relative">
+                                    <input type="password" class="form-control" id="editPassword"
+                                        placeholder="Kosongkan jika tidak diubah">
+                                        <span class="fa fa-eye-slash show-hide-password" id="toggle-password-edit"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -485,11 +491,32 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Gagal Menghapus',
-                            text: error.response?.data?.message || 'Terjadi kesalahan saat menghapus pengguna.'
+                            text: error.response?.data?.message ||
+                                'Terjadi kesalahan saat menghapus pengguna.'
                         });
                     }
                 }
             });
         }
+        $("#toggle-password-create").click(function () {
+            $( this ).toggleClass("fa-eye fa-eye-slash");
+            if ($("#createPassword").attr("type") == "password")
+            {
+                $("#createPassword").attr("type", "text");
+            } else
+            {
+                $("#createPassword").attr("type", "password");
+            }
+        });
+        $("#toggle-password-edit").click(function () {
+            $( this ).toggleClass("fa-eye fa-eye-slash");
+            if ($("#editPassword").attr("type") == "password")
+            {
+                $("#editPassword").attr("type", "text");
+            } else
+            {
+                $("#editPassword").attr("type", "password");
+            }
+        });
     </script>
 @endsection
