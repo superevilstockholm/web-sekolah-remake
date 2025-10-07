@@ -328,6 +328,7 @@
                     pagination.innerHTML = '';
                 } else {
                     ppdb = data.data;
+                    startIndex = (data.current_page - 1) * data.per_page;
                     paginationHTML = data.links.map(link => `
                         <li class="page-item ${link.active ? 'active' : ''} ${!link.url ? 'disabled' : ''}">
                             <a href="#" class="page-link" data-page="${link.page || '#'}">${link.label}</a>
@@ -343,7 +344,7 @@
                 }
                 ppdbTableBody.innerHTML = ppdb.map((item, index) => `
                     <tr>
-                        <td>${index + 1}</td>
+                        <td>${startIndex + index + 1}</td>
                         <td>${item.nama_lengkap}</td>
                         <td>${item.jenis_pendaftaran}</td>
                         <td>${item.jenis_kelamin === 'P' ? 'Perempuan' : 'Laki-laki'}</td>
