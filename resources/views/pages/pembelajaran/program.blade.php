@@ -39,7 +39,7 @@
                         <a class="text-primary" style="text-decoration: none;" href="{{ route('pembelajaran.kurikulum') }}">Kurikulum
                             Nasional</a>
                         dan <a class="text-primary" style="text-decoration: none;"
-                            href="#">nilai-nilai Qur’ani</a>.
+                            href="{{ route('kehidupan-siswa.kehidupan-rohani') }}">nilai-nilai Qur’ani</a>.
                         Program pembelajaran kami menekankan keseimbangan antara ilmu pengetahuan umum dan pendidikan agama.
                     </p> <br>
                     <p>Setiap jenjang pendidikan di Al-Layyinah disusun dengan memperhatikan
@@ -76,7 +76,7 @@
                 </div>
                 <!-- Card 2 -->
                 <div class="item">
-                    <a href="#">
+                    <a href="{{ route('kehidupan-siswa.kehidupan-rohani') }}">
                         <div class="card border-0 rounded-4 overflow-hidden shadow-sm">
                             <img src="https://sph.edu/wp-content/uploads/2022/02/carousel-sph-academic-programs-cambridge-v1.jpg"
                                 class="card-img" alt="Sekolah Dasar">
