@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MasterData\NewsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -111,11 +112,21 @@ Route::prefix('jenjang')->group(function () {
 
 // Berita dan Acara
 Route::prefix('berita-dan-acara')->group(function () {
-    Route::get('berita', function () {
-        return view('pages.berita-dan-acara.berita');
+    Route::prefix('berita')->group(function () {
+        Route::get('/', function () {
+            return view('pages.berita-dan-acara.berita.index');
+        })->name('berita-dan-acara.berita.index');
+        Route::get('/{slug}', function ($slug) {
+            return view('pages.berita-dan-acara.berita.show', compact('slug'));
+        })->name('berita-dan-acara.berita.show');
     })->name('berita-dan-acara.berita');
-    Route::get('acara', function () {
-        return view('pages.berita-dan-acara.acara');
+    Route::prefix('acara')->group(function () {
+        Route::get('/', function () {
+            return view('pages.berita-dan-acara.acara.index');
+        })->name('berita-dan-acara.acara.index');
+        Route::get('/{slug}', function ($slug) {
+            return view('pages.berita-dan-acara.acara.show', compact('slug'));
+        })->name('berita-dan-acara.acara.show');
     })->name('berita-dan-acara.acara');
     Route::get('publikasi', function () {
         return view('pages.berita-dan-acara.publikasi');

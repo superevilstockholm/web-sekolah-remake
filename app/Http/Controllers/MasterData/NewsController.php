@@ -98,9 +98,12 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(News $news, Request $request): JsonResponse
+    public function show(Request $request, $identifier): JsonResponse
     {
         try {
+            $news = is_numeric($identifier)
+                ? News::findOrFail($identifier) // ID
+                : News::where('slug', $identifier)->firstOrFail(); // Slug
             return response()->json([
                 'status' => true,
                 'message' => 'Successfully fetched news details',

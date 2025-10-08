@@ -82,7 +82,7 @@
                 const col = document.createElement("div");
                 col.className = "col-md-4 col-12 mb-3";
                 col.innerHTML = `
-                    <a href="/berita/${news.slug}" class="text-decoration-none">
+                    <a href="/berita-dan-acara/berita/${news.slug}" class="text-decoration-none">
                         <div class="card h-100 shadow-sm border-0 position-relative rounded">
                             <div class="ratio ratio-4x3">
                                 <img src="${news.image_url}"

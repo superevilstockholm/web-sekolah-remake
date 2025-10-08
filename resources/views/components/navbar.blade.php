@@ -8,8 +8,8 @@
                         Berita dan Acara
                     </a>
                     <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3" style="font-size: 0.9rem;">
-                        <li><a class="dropdown-item" href="{{ route('berita-dan-acara.berita') }}">Berita</a></li>
-                        <li><a class="dropdown-item" href="{{ route('berita-dan-acara.acara') }}">Acara</a></li>
+                        <li><a class="dropdown-item" href="{{ route('berita-dan-acara.berita.index') }}">Berita</a></li>
+                        <li><a class="dropdown-item" href="{{ route('berita-dan-acara.acara.index') }}">Acara</a></li>
                         <li><a class="dropdown-item" href="{{ route('berita-dan-acara.publikasi') }}">Publikasi</a></li>
                     </ul>
                 </li>
@@ -145,8 +145,8 @@
                             Berita dan Acara
                         </a>
                         <ul class="dropdown-menu mt-0 rounded-0 border-0 shadow-sm p-3">
-                            <li><a class="dropdown-item" href="{{ route('berita-dan-acara.berita') }}">Berita</a></li>
-                            <li><a class="dropdown-item" href="{{ route('berita-dan-acara.acara') }}">Acara</a></li>
+                            <li><a class="dropdown-item" href="{{ route('berita-dan-acara.berita.index') }}">Berita</a></li>
+                            <li><a class="dropdown-item" href="{{ route('berita-dan-acara.acara.index') }}">Acara</a></li>
                             <li><a class="dropdown-item" href="{{ route('berita-dan-acara.publikasi') }}">Publikasi</a></li>
                         </ul>
                     </li>
