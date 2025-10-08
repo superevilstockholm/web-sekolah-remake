@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 // Models
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Blogs extends Model
 {
+    use HasFactory;
+    
     protected $table = 'blogs';
 
     protected $fillable = [

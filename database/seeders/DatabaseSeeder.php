@@ -10,6 +10,7 @@ use App\Models\User;
 
 // Seeders
 use Database\Seeders\MasterData\PPDBSeeder;
+use Database\Seeders\MasterData\BlogsSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,5 +29,8 @@ class DatabaseSeeder extends Seeder
 
         // PPDB Seeder
         $this->call(PPDBSeeder::class);
+
+        // Blogs Seeder
+        $this->call(BlogsSeeder::class);
     }
 }
