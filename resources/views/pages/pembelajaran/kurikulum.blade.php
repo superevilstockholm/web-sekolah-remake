@@ -128,7 +128,7 @@
                     <p style="line-height: 1.9 !important;">
                         Al-Layyinah mengadopsi kurikulum <strong>Al-Qur’an & Hadits</strong> yang komprehensif untuk siswa
                         tingkat Taman Kanak-Kanak hingga <a class="text-primary" style="text-decoration: none;"
-                            href="#">Sekolah Dasar</a>.
+                            href="{{ route('jenjang.sd') }}">Sekolah Dasar</a>.
                         Kurikulum ini mencakup pengenalan huruf hijaiyah, tahsin, tahfidz, pemahaman tafsir sederhana,
                         serta pengamalan hadits-hadits pilihan dalam kehidupan sehari-hari.
                     </p>
