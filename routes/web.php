@@ -133,6 +133,16 @@ Route::prefix('berita-dan-acara')->group(function () {
     })->name('berita-dan-acara.publikasi');
 })->name('berita-dan-acara');
 
+// Blogs
+Route::prefix('blogs')->group(function () {
+    Route::get('/', function () {
+        return view('pages.blogs.index');
+    })->name('pages.blogs.index');
+    Route::get('/{slug}', function ($slug) {
+        return view('pages.blogs.show', compact('slug'));
+    })->name('pages.blogs.show');
+})->name('pages.blogs');
+
 // Protected
 Route::middleware(['auth.sanctum.cookie'])->group(function () {
     // Auth

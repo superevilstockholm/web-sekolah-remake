@@ -14,7 +14,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Blog</a>
+                    <a class="nav-link text-white" href="{{ route('pages.blogs.index') }}">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Hubungi Kami</a>
@@ -151,7 +151,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
+                        <a class="nav-link" href="{{ route('pages.blogs.index') }}">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Hubungi Kami</a>
