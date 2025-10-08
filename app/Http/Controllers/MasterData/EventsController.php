@@ -98,9 +98,12 @@ class EventsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Events $event, Request $request): JsonResponse
+    public function show(Request $request, $identifier): JsonResponse
     {
         try {
+            $event = is_numeric($identifier)
+                ? Events::findOrFail($identifier) // ID
+                : Events::where('slug', $identifier)->firstOrFail(); // Slug
             return response()->json([
                 'status' => true,
                 'message' => 'Successfully fetched event details',
