@@ -269,7 +269,7 @@
                 </div>
             </div>
             <div class="row mb-1">
-                <div class="tab-content mt-4" id="campusTabsContent"></div>
+                <div class="tab-content mt-4" id="shoolsTabsContent"></div>
             </div>
             <div class="row mb-4">
                 <div class="col">
@@ -622,7 +622,7 @@
         </div>
     </section>
     <script>
-        const campuses = [{
+        const schools = [{
                 id: "lippo",
                 location: "Tangerang",
                 name: "Lippo Village",
@@ -659,8 +659,8 @@
             }
         ];
         const tabList = document.getElementById("campusTabs");
-        const tabContent = document.getElementById("campusTabsContent");
-        campuses.forEach((campus, index) => {
+        const tabContent = document.getElementById("shoolsTabsContent");
+        schools.forEach((campus, index) => {
             tabList.innerHTML += `
                 <li class="nav-item" role="presentation">
                     <button class="nav-link fw-medium btn-name ${index === 0 ? "active" : ""}"

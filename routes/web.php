@@ -143,6 +143,11 @@ Route::prefix('blogs')->group(function () {
     })->name('pages.blogs.show');
 })->name('pages.blogs');
 
+// Contact
+Route::get('contact', function () {
+    return view('pages.contact');
+})->name('contact');
+
 // Protected
 Route::middleware(['auth.sanctum.cookie'])->group(function () {
     // Auth
