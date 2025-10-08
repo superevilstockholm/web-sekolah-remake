@@ -16,6 +16,9 @@
         .container {
             max-width: 1250px;
         }
+        .text-orange {
+            color: #ff9b44 !important;
+        }
     </style>
     {{-- Owl Carrousel --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
