@@ -39,7 +39,7 @@
                         kurikulum yang mengintegrasikan <a class="text-primary" style="text-decoration: none;"
                             href="{{ route('pembelajaran.kurikulum') }}">Kurikulum Nasional</a>
                         dan <a class="text-primary" style="text-decoration: none;"
-                            href="#">nilai-nilai Qur’ani</a>.
+                            href="{{ route('kehidupan-siswa.kehidupan-rohani') }}">nilai-nilai Qur’ani</a>.
                         Setiap program dirancang untuk membentuk generasi yang berilmu, berakhlak, dan bertaqwa.</p> <br>
                     <p>Tim pendidik Al-Layyinah menyusun jalur pembelajaran sesuai tahapan usia anak,
                         agar mereka tumbuh dengan ilmu yang bermanfaat serta karakter Islami yang kuat.
@@ -62,7 +62,7 @@
             <div class="owl-carousel owl-theme">
                 <!-- Card 1 -->
                 <div class="item">
-                    <a href="#">
+                    <a href="{{ route('jenjang.tk') }}">
                         <div class="card border-0 rounded-4 overflow-hidden shadow-sm">
                             <img src="https://sph.edu/wp-content/uploads/2022/03/sph-learningpathway-carousel-early-years.jpg"
                                 class="card-img w-100 h-100 object-fit-cover" alt="Pendidikan Anak Usia Dini">
@@ -75,7 +75,7 @@
                 </div>
                 <!-- Card 2 -->
                 <div class="item">
-                    <a href="#">
+                    <a href="{{ route('jenjang.sd') }}">
                         <div class="card border-0 rounded-4 overflow-hidden shadow-sm">
                             <img src="https://sph.edu/wp-content/uploads/2022/03/sph-learningpathway-carousel-primary.jpg"
                                 class="card-img w-100 h-100 object-fit-cover" alt="Sekolah Dasar">
@@ -88,7 +88,7 @@
                 </div>
                 <!-- Card 3 -->
                 <div class="item">
-                    <a href="#">
+                    <a href="{{ route('jenjang.smp') }}">
                         <div class="card border-0 rounded-4 overflow-hidden shadow-sm">
                             <img src="https://sph.edu/wp-content/uploads/2022/03/sph-learningpathway-carousel-middle.jpg"
                                 class="card-img w-100 h-100 object-fit-cover" alt="Sekolah Menengah">
@@ -101,7 +101,7 @@
                 </div>
                 <!-- Card 4 -->
                 <div class="item">
-                    <a href="#">
+                    <a href="{{ route('jenjang.sma') }}">
                         <div class="card border-0 rounded-4 overflow-hidden shadow-sm">
                             <img src="https://palpres.disway.id/upload/fd01d151c362200887d834c877335feb.jpeg"
                                 class="card-img w-100 h-100 object-fit-cover" alt="Sekolah Menengah">
