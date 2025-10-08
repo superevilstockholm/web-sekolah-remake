@@ -98,9 +98,12 @@ class BlogsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Blogs $blog, Request $request): JsonResponse
+    public function show(Request $request, $identifier): JsonResponse
     {
         try {
+            $blog = is_numeric($identifier)
+                ? Blogs::findOrFail($identifier) // ID
+                : Blogs::where('slug', $identifier)->firstOrFail(); // Slug
             return response()->json([
                 'status' => true,
                 'message' => 'Successfully fetched blog details',
